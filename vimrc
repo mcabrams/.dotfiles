@@ -39,11 +39,13 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'chrisbra/color_highlight'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'bufexplorer.zip'
+Bundle 'tpope/vim-rvm'
 
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %l,\ col:\ %c%v\ (%p)%)
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set statusline+=rvm#statusline()
 filetype plugin indent on
 
 let mapleader = ","
@@ -100,6 +102,18 @@ runtime macros/matchit.vim
 """""""""""""""""""""""""""""""""""""""""""""
 
 " StripTrailingWhitespaces function and mapping with autocmd on saves
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
 nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
 " autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
 
@@ -179,8 +193,7 @@ set listchars=tab:▸\ ,eol:¬
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
 " ================ Completion =======================
-
-set wildmode=longest
+set wildmode=full
 set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
