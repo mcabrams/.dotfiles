@@ -13,6 +13,7 @@ Bundle 'gmarik/vundle'
 " original repos on github
 
 Bundle 'Indent-Guides'
+Bundle 'Tagbar'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'SuperTab'
 Bundle 'scrooloose/syntastic'
@@ -40,6 +41,7 @@ Bundle 'chrisbra/color_highlight'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'bufexplorer.zip'
 Bundle 'tpope/vim-rvm'
+Bundle 'AutoTag'
 
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %l,\ col:\ %c%v\ (%p)%)
 set statusline+=%#warningmsg#
@@ -71,6 +73,10 @@ set tabstop=2
 set softtabstop=2
 set guifont=Monaco\ for\ Powerline:h12
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+" Tagbar
+map <leader>t :TagbarToggle<CR>
+autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
 " NERDtree
 autocmd vimenter * NERDTree
