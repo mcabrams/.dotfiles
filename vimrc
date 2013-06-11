@@ -12,6 +12,9 @@ Bundle 'gmarik/vundle'
 "
 " original repos on github
 
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-session'
+Bundle 'xolox/vim-colorscheme-switcher'
 Bundle 'Indent-Guides'
 Bundle 'Tagbar'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -42,12 +45,13 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'bufexplorer.zip'
 Bundle 'tpope/vim-rvm'
 Bundle 'AutoTag'
+Bundle 'dhruvasagar/vim-railscasts-theme'
 
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %l,\ col:\ %c%v\ (%p)%)
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-set statusline+=rvm#statusline()
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"set statusline+=rvm#statusline()
 filetype plugin indent on
 
 let mapleader = ","
@@ -66,6 +70,12 @@ if has("unnamedplus")
 elseif has("clipboard")
   set clipboard=unnamed
 endif
+
+" ================ Scrolling ========================
+
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
 
 set expandtab
 set shiftwidth=2
@@ -88,6 +98,7 @@ let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
 let NERDTreeShowHidden=1
 map <leader>n :NERDTreeToggle<cr>
+nmap <leader>f :NERDTreeFind<CR>
 
 " powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
@@ -97,6 +108,7 @@ set laststatus=2
 let g:indent_guides_guide_size=1
 
 " Colorscheme
+colorscheme railscasts
 colorscheme Tomorrow-Night
 
 " Enable Matchit.vim
@@ -197,6 +209,9 @@ set listchars=tab:▸\ ,eol:¬
 
 " Allow vimrc editing
 nmap <leader>v :tabedit $MYVIMRC<CR>
+
+" Reopen last file in vs
+nmap <c-s-t> :vs<bar>:b#<CR>
 
 " ================ Completion =======================
 set wildmode=full
