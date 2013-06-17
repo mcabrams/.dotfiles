@@ -46,6 +46,7 @@ Bundle 'bufexplorer.zip'
 Bundle 'tpope/vim-rvm'
 Bundle 'AutoTag'
 Bundle 'dhruvasagar/vim-railscasts-theme'
+Bundle 'Rubytest.vim'
 
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %l,\ col:\ %c%v\ (%p)%)
 set statusline+=%#warningmsg#
@@ -70,6 +71,8 @@ if has("unnamedplus")
 elseif has("clipboard")
   set clipboard=unnamed
 endif
+set go-=r 
+set go-=L
 
 " ================ Scrolling ========================
 
@@ -85,8 +88,12 @@ set guifont=Monaco\ for\ Powerline:h12
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 " Tagbar
-map <leader>t :TagbarToggle<CR>
+map <leader>g :TagbarToggle<CR>
 autocmd! BufRead,BufNewFile *.sass setfiletype sass
+
+" Rubytest
+" let g:rubytest_in_quickfix = 1
+map <Leader>/ <Plug>RubyTestRunLast " change from <Leader>l to <Leader>/ 
 
 " NERDtree
 autocmd vimenter * NERDTree
@@ -118,6 +125,10 @@ runtime macros/matchit.vim
 """""""""""""""""""""""""""""""""""""""""""""
 " Functions from Vimcasts and other places! "
 """""""""""""""""""""""""""""""""""""""""""""
+
+" Nohlsearch hotkeys
+
+noremap <leader>h :nohlsearch<CR>
 
 " StripTrailingWhitespaces function and mapping with autocmd on saves
 function! <SID>StripTrailingWhitespaces()
