@@ -190,10 +190,6 @@ runtime macros/matchit.vim
 
 noremap <leader>h :nohlsearch<CR>
 
-"Convert Ruby 1.8 to 1.9 hash syntax
-
-nmap <leader>cr 
-
 " StripTrailingWhitespaces function and mapping with autocmd on saves
 function! <SID>StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position.
