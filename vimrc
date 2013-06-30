@@ -8,44 +8,84 @@ call vundle#rc()
 " required!
 Bundle 'gmarik/vundle'
 
-" My Bundles here:
-"
-" original repos on github
 
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-session'
-Bundle 'xolox/vim-colorscheme-switcher'
-Bundle 'Indent-Guides'
+"!=!=!= BUNDLES =!=!=
+
+" === Alignment =====
+
+Bundle 'Align'
+Bundle 'Tabular'
+
+" === AutoClosing =====
+
+Bundle 'closetag.vim'
+Bundle 'delimitMate.vim'
+
+" ===== Ctags =======
+
+Bundle 'AutoTag'
 Bundle 'Tagbar'
+Bundle 'vim-scripts/taglist.vim'
+
+" ===== Navigation =======
+
+Bundle 'bufexplorer.zip'
+Bundle 'ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'matchit.zip'
+Bundle 'xolox/vim-session'
+
+" ===== RubyAndRails
+
+Bundle 'tpope/vim-rvm'
+Bundle 'danchoi/ruby_bashrockets.vim'
+Bundle 'tpope/vim-endwise'
+
+" ===== Syntax ======
+
+Bundle 'Haml'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'html5.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-haml'
+
+" ===== Testing ======
+
+Bundle 'Rubytest.vim'
+Bundle 'rails.vim'
+
+" === Theme/Colors ===
+
+Bundle 'airblade/vim-gitgutter'
+Bundle 'chrisbra/color_highlight'
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'dhruvasagar/vim-railscasts-theme'
+Bundle 'skammer/vim-css-color'
+Bundle 'xolox/vim-colorscheme-switcher'
+
+" === Prereqs ======
+
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'xolox/vim-misc'
+
+" === Misc =========
+
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'SuperTab'
-Bundle 'scrooloose/syntastic'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'closetag.vim'
-Bundle 'ctrlp.vim'
 Bundle 'fugitive.vim'
-Bundle 'mattn/zencoding-vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'html5.vim'
-Bundle 'HTML5-Syntax-File'
 Bundle 'jpalardy/spacehi.vim'
-Bundle 'surround.vim'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'Haml'
-Bundle 'matchit.zip'
-Bundle 'rails.vim'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'chrisbra/color_highlight'
 Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'bufexplorer.zip'
-Bundle 'tpope/vim-rvm'
-Bundle 'AutoTag'
-Bundle 'dhruvasagar/vim-railscasts-theme'
+Bundle 'mattn/zencoding-vim'
+Bundle 'rizzatti/dash.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'surround.vim'
+Bundle 'terryma/vim-multiple-cursors'
+
+" ==== Disabled =====
+
+"Bundle 'jistr/vim-nerdtree-tabs'
+"Bundle 'xolox/vim-easytags'
+"Bundle 'Yggdroot/indentLine'
 
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %l,\ col:\ %c%v\ (%p)%)
 set statusline+=%#warningmsg#
@@ -54,22 +94,35 @@ set statusline+=%#warningmsg#
 "set statusline+=rvm#statusline()
 filetype plugin indent on
 
+autocmd! BufRead,BufNewFile *.sass setfiletype sass
+autocmd! BufRead,BufNewFile *.scss setfiletype scss
+
 let mapleader = ","
 
 syntax on
-set number
+set autoindent
+set cursorline
+set go-=L
+set go-=r 
+set history=1000
 set hlsearch
-set showmatch
 set incsearch
 set nowrap
-set autoindent
-set history=1000
-set cursorline
+set number
+set showmatch
 if has("unnamedplus")
   set clipboard=unnamedplus
 elseif has("clipboard")
   set clipboard=unnamed
 endif
+
+
+" ================= Folding ========================
+
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
 
 " ================ Scrolling ========================
 
@@ -84,9 +137,25 @@ set softtabstop=2
 set guifont=Monaco\ for\ Powerline:h12
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
+"This allows for change paste motion cp{motion}
+nmap <silent> cp :set opfunc=ChangePaste<CR>g@
+function! ChangePaste(type, ...)
+    silent exe "normal! `[v`]\"_c"
+    silent exe "normal! p"
+endfunction
+
+" indentLine setup
+
+"let g:indentLine_char = '⁞'
+"let g:indentLine_color_gui = '#3b3b3b' 
+"let g:indentLine_noConcealCursor=0
+
 " Tagbar
-map <leader>t :TagbarToggle<CR>
-autocmd! BufRead,BufNewFile *.sass setfiletype sass
+map <leader>g :TagbarToggle<CR>
+
+" Rubytest
+" let g:rubytest_in_quickfix = 1
+map <Leader>/ <Plug>RubyTestRunLast " change from <Leader>l to <Leader>/ 
 
 " NERDtree
 autocmd vimenter * NERDTree
@@ -97,15 +166,13 @@ let NERDTreeQuitOnOpen=0
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
 let NERDTreeShowHidden=1
+let NERDTreeShowBookmarks=1
 map <leader>n :NERDTreeToggle<cr>
 nmap <leader>f :NERDTreeFind<CR>
 
 " powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 set laststatus=2
-
-" Indent-Guides
-let g:indent_guides_guide_size=1
 
 " Colorscheme
 colorscheme railscasts
@@ -118,6 +185,10 @@ runtime macros/matchit.vim
 """""""""""""""""""""""""""""""""""""""""""""
 " Functions from Vimcasts and other places! "
 """""""""""""""""""""""""""""""""""""""""""""
+
+" Nohlsearch hotkeys
+
+noremap <leader>h :nohlsearch<CR>
 
 " StripTrailingWhitespaces function and mapping with autocmd on saves
 function! <SID>StripTrailingWhitespaces()
