@@ -40,6 +40,7 @@ Bundle 'xolox/vim-session'
 Bundle 'tpope/vim-rvm'
 Bundle 'danchoi/ruby_bashrockets.vim'
 Bundle 'tpope/vim-endwise'
+Bundle 'blockle.vim'
 
 " ===== Syntax ======
 
@@ -76,6 +77,7 @@ Bundle 'fugitive.vim'
 Bundle 'jpalardy/spacehi.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'mattn/zencoding-vim'
+Bundle 'UltiSnips'
 Bundle 'rizzatti/dash.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'surround.vim'
@@ -86,6 +88,8 @@ Bundle 'terryma/vim-multiple-cursors'
 "Bundle 'jistr/vim-nerdtree-tabs'
 "Bundle 'xolox/vim-easytags'
 "Bundle 'Yggdroot/indentLine'
+
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips/mcabrams_snips"]
 
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %l,\ col:\ %c%v\ (%p)%)
 set statusline+=%#warningmsg#
