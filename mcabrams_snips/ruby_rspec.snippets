@@ -1,0 +1,31 @@
+extends ruby
+
+snippet it
+it do
+  ${1:should...}
+end
+endsnippet
+
+snippet It
+it { ${1:should...} }
+endsnippet
+
+snippet describe
+describe "${1:enter description...}" do
+  ${2: #TODO}
+end
+endsnippet
+
+snippet Describe
+describe "${1:enter description...}" { ${2: #TODO} }
+endsnippet
+
+snippet before
+before do
+  ${1:Do this before...}
+end
+endsnippet
+
+snippet Before
+before { ${1:Do this before...} }
+endsnippet

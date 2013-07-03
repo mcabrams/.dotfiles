@@ -82,6 +82,8 @@ Bundle 'rizzatti/dash.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'surround.vim'
 Bundle 'terryma/vim-multiple-cursors'
+Bundle 'junegunn/vim-github-dashboard'
+Bundle 'sjl/vitality.vim'
 
 " ==== Disabled =====
 
@@ -139,6 +141,7 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set guifont=Monaco\ for\ Powerline:h12
+"set guifont=Andale\ Mono:h12
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 "This allows for change paste motion cp{motion}
