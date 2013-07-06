@@ -9,6 +9,7 @@
 	ui = true
 [core]
 	editor = mvim -f
+	excludesfile = /Users/matt/.gitignore_global
 [merge]
 	tool = diffmerge
 [mergetool "diffmerge"]

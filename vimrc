@@ -42,6 +42,10 @@ Bundle 'danchoi/ruby_bashrockets.vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'blockle.vim'
 
+" ===== Javascript
+
+Bundle 'pangloss/vim-javascript'
+
 " ===== Syntax ======
 
 Bundle 'Haml'
@@ -63,6 +67,7 @@ Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'dhruvasagar/vim-railscasts-theme'
 Bundle 'skammer/vim-css-color'
 Bundle 'xolox/vim-colorscheme-switcher'
+Bundle 'croaky/vim-colors-github'
 
 " === Prereqs ======
 
@@ -84,6 +89,7 @@ Bundle 'surround.vim'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'junegunn/vim-github-dashboard'
 Bundle 'sjl/vitality.vim'
+Bundle 'itspriddle/vim-marked'
 
 " ==== Disabled =====
 
@@ -107,6 +113,7 @@ let mapleader = ","
 
 syntax on
 set autoindent
+set smartindent
 set cursorline
 set go-=L
 set go-=r 
@@ -116,6 +123,7 @@ set incsearch
 set nowrap
 set number
 set showmatch
+set showcmd
 if has("unnamedplus")
   set clipboard=unnamedplus
 elseif has("clipboard")
@@ -141,7 +149,9 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set guifont=Monaco\ for\ Powerline:h12
+set linespace=2
 "set guifont=Andale\ Mono:h12
+"set guifont=Inconsolata\ XL
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 "This allows for change paste motion cp{motion}
@@ -183,7 +193,8 @@ set laststatus=2
 
 " Colorscheme
 colorscheme railscasts
-colorscheme Tomorrow-Night
+"colorscheme Tomorrow-Night
+"colorscheme github
 
 " Enable Matchit.vim
 runtime macros/matchit.vim
@@ -193,9 +204,50 @@ runtime macros/matchit.vim
 " Functions from Vimcasts and other places! "
 """""""""""""""""""""""""""""""""""""""""""""
 
+" Allows javascript expected bracket movement
+inoremap <C-Return> <CR><CR><C-o>k<Tab>
+
+" Jump to last cursor position unless it's invalid or in an event handler
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+" Create Blank Newlines and stay in Normal mode
+nnoremap <silent> zj o<Esc>
+nnoremap <silent> zk O<Esc>
+
+" Search mappings: These will make it so that going to the next one in a
+" search will center on the line it's found in.
+map N Nzz
+map n nzz
+
 " Nohlsearch hotkeys
 
-noremap <leader>h :nohlsearch<CR>
+:nnoremap <CR> :nohlsearch<cr>
+
+function! Smart_TabComplete()
+  let line = getline('.')                         " current line
+
+  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+                                                  " line to one character right
+                                                  " of the cursor
+  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
+  if (strlen(substr)==0)                          " nothing to match on empty string
+    return "\<tab>"
+  endif
+  let has_period = match(substr, '\.') != -1      " position of period, if any
+  let has_slash = match(substr, '\/') != -1       " position of slash, if any
+  if (!has_period && !has_slash)
+    return "\<C-X>\<C-P>"                         " existing text matching
+  elseif ( has_slash )
+    return "\<C-X>\<C-F>"                         " file matching
+  else
+    return "\<C-X>\<C-O>"                         " plugin matching
+  endif
+endfunction
+
+inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 " StripTrailingWhitespaces function and mapping with autocmd on saves
 function! <SID>StripTrailingWhitespaces()
