@@ -1,0 +1,13 @@
+extends javascript
+
+snippet "var assert"
+var assert = function(expected, actual) {
+  if (expected !== actual) {
+    throw "Assertion failed: expected " + expected + ", but got " + actual;
+  }
+};
+endsnippet
+
+snippet assert
+assert(${1:expected}, ${2:actual});
+endsnippet

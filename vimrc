@@ -44,7 +44,8 @@ Bundle 'blockle.vim'
 
 " ===== Javascript
 
-Bundle 'pangloss/vim-javascript'
+Bundle 'jelera/vim-javascript-syntax'
+Bundle 'marijnh/tern_for_vim'
 
 " ===== Syntax ======
 
@@ -77,7 +78,6 @@ Bundle 'xolox/vim-misc'
 " === Misc =========
 
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'SuperTab'
 Bundle 'fugitive.vim'
 Bundle 'jpalardy/spacehi.vim'
 Bundle 'kien/rainbow_parentheses.vim'
@@ -87,15 +87,19 @@ Bundle 'rizzatti/dash.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'surround.vim'
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'junegunn/vim-github-dashboard'
 Bundle 'sjl/vitality.vim'
 Bundle 'itspriddle/vim-marked'
+Bundle 'jpalardy/vim-slime'
+Bundle 'Valloric/YouCompleteMe'
 
 " ==== Disabled =====
 
-"Bundle 'jistr/vim-nerdtree-tabs'
-"Bundle 'xolox/vim-easytags'
-"Bundle 'Yggdroot/indentLine'
+" Bundle 'jistr/vim-nerdtree-tabs'
+" Bundle 'xolox/vim-easytags'
+" Bundle 'Yggdroot/indentLine'
+" Bundle 'SuperTab'
+" Bundle 'junegunn/vim-github-dashboard'
+" Bundle 'pangloss/vim-javascript'
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips/mcabrams_snips"]
 
@@ -153,6 +157,7 @@ set linespace=2
 "set guifont=Andale\ Mono:h12
 "set guifont=Inconsolata\ XL
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 
 "This allows for change paste motion cp{motion}
 nmap <silent> cp :set opfunc=ChangePaste<CR>g@
@@ -169,6 +174,15 @@ endfunction
 
 " Tagbar
 map <leader>g :TagbarToggle<CR>
+
+" Slime.vim
+
+let g:slime_target = "tmux"
+
+"nerdcommenter
+
+let g:NERDSpaceDelims = 1
+let g:NERDRemoveExtraSpaces = 1
 
 " Rubytest
 " let g:rubytest_in_quickfix = 1
@@ -225,29 +239,6 @@ map n nzz
 " Nohlsearch hotkeys
 
 :nnoremap <CR> :nohlsearch<cr>
-
-function! Smart_TabComplete()
-  let line = getline('.')                         " current line
-
-  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
-                                                  " line to one character right
-                                                  " of the cursor
-  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-  if (strlen(substr)==0)                          " nothing to match on empty string
-    return "\<tab>"
-  endif
-  let has_period = match(substr, '\.') != -1      " position of period, if any
-  let has_slash = match(substr, '\/') != -1       " position of slash, if any
-  if (!has_period && !has_slash)
-    return "\<C-X>\<C-P>"                         " existing text matching
-  elseif ( has_slash )
-    return "\<C-X>\<C-F>"                         " file matching
-  else
-    return "\<C-X>\<C-O>"                         " plugin matching
-  endif
-endfunction
-
-inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
 " StripTrailingWhitespaces function and mapping with autocmd on saves
 function! <SID>StripTrailingWhitespaces()
