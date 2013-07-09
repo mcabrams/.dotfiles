@@ -53,3 +53,10 @@ bind k:shift;ctrl focus up
 bind j:shift;ctrl focus down
 bind k:shift;ctrl;alt focus above
 bind j:shift;ctrl;alt focus behind
+
+# Layout Bindings
+layout codeTest 'iTerm' push down bar-resize:screenSizeY*1/4
+layout codeTest 'MacVim' push up bar-resize:screenSizeY*3/4
+layout codeTest BEFORE focus 'iTerm' # Ugh, having trouble chaining, this is kinda hacky
+layout codeTest AFTER focus 'MacVim'
+bind l:ctrl layout codeTest 
