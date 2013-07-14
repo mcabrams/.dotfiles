@@ -34,6 +34,7 @@ Bundle 'ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'matchit.zip'
 Bundle 'xolox/vim-session'
+Bundle 'techlivezheng/vim-plugin-minibufexpl'
 
 " ===== RubyAndRails
 
@@ -46,6 +47,7 @@ Bundle 'blockle.vim'
 
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'marijnh/tern_for_vim'
+Bundle 'teramako/jscomplete-vim'
 
 " ===== Syntax ======
 
@@ -69,6 +71,7 @@ Bundle 'dhruvasagar/vim-railscasts-theme'
 Bundle 'skammer/vim-css-color'
 Bundle 'xolox/vim-colorscheme-switcher'
 Bundle 'croaky/vim-colors-github'
+Bundle 'mcabrams/github.vim'
 
 " === Prereqs ======
 
@@ -77,8 +80,8 @@ Bundle 'xolox/vim-misc'
 
 " === Misc =========
 
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'fugitive.vim'
+Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-fugitive'
 Bundle 'jpalardy/spacehi.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'mattn/zencoding-vim'
@@ -91,9 +94,12 @@ Bundle 'sjl/vitality.vim'
 Bundle 'itspriddle/vim-marked'
 Bundle 'jpalardy/vim-slime'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'Tabmerge'
 
 " ==== Disabled =====
 
+" Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Bundle 'othree/xml.vim'
 " Bundle 'jistr/vim-nerdtree-tabs'
 " Bundle 'xolox/vim-easytags'
 " Bundle 'Yggdroot/indentLine'
@@ -103,8 +109,12 @@ Bundle 'Valloric/YouCompleteMe'
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips/mcabrams_snips"]
 
-set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %l,\ col:\ %c%v\ (%p)%)
-set statusline+=%#warningmsg#
+" rails.vim
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_rails = 1
+
+" set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %l,\ col:\ %c%v\ (%p)%)
+" set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
 "set statusline+=rvm#statusline()
@@ -128,6 +138,8 @@ set nowrap
 set number
 set showmatch
 set showcmd
+set ignorecase                  " searches are case insensitive...
+set smartcase                   " ... unless they contain at least one capital letter
 if has("unnamedplus")
   set clipboard=unnamedplus
 elseif has("clipboard")
@@ -152,18 +164,24 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
-set guifont=Monaco\ for\ Powerline:h12
+" set guifont=Monaco\ for\ Powerline:h12
 set linespace=2
-"set guifont=Andale\ Mono:h12
-"set guifont=Inconsolata\ XL
+" set guifont=Andale\ Mono:h12
+set guifont=Menlo\ for\ Powerline:h11
+" set guifont=Consolas\ for\ Powerline:h12
+" set linespace=1
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType sass set omnifunc=sasscomplete#CompleteSASS
+autocmd FileType javascript
+  \ :setl omnifunc=jscomplete#CompleteJS
+
+let g:jscomplete_use = ['dom', 'moz']
 
 "This allows for change paste motion cp{motion}
 nmap <silent> cp :set opfunc=ChangePaste<CR>g@
 function! ChangePaste(type, ...)
-    silent exe "normal! `[v`]\"_c"
-    silent exe "normal! p"
+  silent exe "normal! `[v`]\"_c"
+  silent exe "normal! p"
 endfunction
 
 " indentLine setup
@@ -202,12 +220,18 @@ map <leader>n :NERDTreeToggle<cr>
 nmap <leader>f :NERDTreeFind<CR>
 
 " powerline
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-set laststatus=2
+" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" set laststatus=2
+
+" airline
+let g:airline_theme='solarized'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
 
 " Colorscheme
-colorscheme railscasts
-"colorscheme Tomorrow-Night
+" colorscheme railscasts
+colorscheme Tomorrow-Night
+" colorscheme github_modified
 "colorscheme github
 
 " Enable Matchit.vim
