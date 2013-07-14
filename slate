@@ -63,3 +63,7 @@ bind l:ctrl layout codeTest
 
 # Grid Binding
 bind g:cmd grid padding:5 0:6,6 
+
+# Move to Next Window Bindings
+bind left:alt;ctrl throw prev
+bind right:alt;ctrl throw next
