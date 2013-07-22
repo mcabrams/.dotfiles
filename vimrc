@@ -15,6 +15,7 @@ Bundle 'gmarik/vundle'
 
 Bundle 'Align'
 Bundle 'Tabular'
+Bundle 'junegunn/vim-easy-align'
 
 " === AutoClosing =====
 
@@ -23,13 +24,12 @@ Bundle 'delimitMate.vim'
 
 " ===== Ctags =======
 
-Bundle 'AutoTag'
+Bundle 'xolox/vim-easytags'
 Bundle 'Tagbar'
 Bundle 'vim-scripts/taglist.vim'
 
 " ===== Navigation =======
 
-Bundle 'bufexplorer.zip'
 Bundle 'ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'matchit.zip'
@@ -95,17 +95,41 @@ Bundle 'itspriddle/vim-marked'
 Bundle 'jpalardy/vim-slime'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Tabmerge'
+Bundle 'xolox/vim-notes' 
 
 " ==== Disabled =====
 
+" Bundle 'bufexplorer.zip'
 " Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 " Bundle 'othree/xml.vim'
 " Bundle 'jistr/vim-nerdtree-tabs'
-" Bundle 'xolox/vim-easytags'
+" Bundle 'AutoTag'
 " Bundle 'Yggdroot/indentLine'
 " Bundle 'SuperTab'
 " Bundle 'junegunn/vim-github-dashboard'
 " Bundle 'pangloss/vim-javascript'
+" Bundle 'myusuf3/numbers.vim'
+
+" mbe config
+map <Leader>mbe :MBEOpen<cr>
+map <Leader>mbc :MBEClose<cr>
+map <Leader>mbt :MBEToggle<cr>
+"
+" MiniBufExpl Colors
+hi MBENormal               guifg=#808080 guibg=fg
+hi MBEChanged              guifg=#CD5907 guibg=fg
+hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+
+" number.vim config
+let g:enable_numbers = 0
+
+" vim-notes config
+:let g:notes_directories = ['~/Dropbox/Notes']
+:let g:notes_suffix = '.txt'
+:let g:notes_title_sync = 'rename_file'
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips/mcabrams_snips"]
 
@@ -124,6 +148,7 @@ autocmd! BufRead,BufNewFile *.sass setfiletype sass
 autocmd! BufRead,BufNewFile *.scss setfiletype scss
 
 let mapleader = ","
+set laststatus=2
 
 syntax on
 set autoindent
@@ -170,8 +195,8 @@ set linespace=2
 set guifont=Menlo\ for\ Powerline:h11
 " set guifont=Consolas\ for\ Powerline:h12
 " set linespace=1
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType sass set omnifunc=sasscomplete#CompleteSASS
+" autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+" autocmd FileType sass set omnifunc=sasscomplete#CompleteSASS
 autocmd FileType javascript
   \ :setl omnifunc=jscomplete#CompleteJS
 
@@ -221,7 +246,6 @@ nmap <leader>f :NERDTreeFind<CR>
 
 " powerline
 " set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-" set laststatus=2
 
 " airline
 let g:airline_theme='solarized'
@@ -345,6 +369,12 @@ function! SummarizeTabs()
     echohl None
   endtry
 endfunction
+
+" Grab path and line number in @
+nnoremap <leader>y :let @+=expand("%") . ':' . line(".")<CR>
+
+" Grab selected text and ...
+vnoremap <leader>y "+y:let @+=@+.expand("%") . ':' . line(".")<CR>
 
 " Set list shortcut
 nmap <leader>l :set list!<CR>
