@@ -1,5 +1,5 @@
-alias ll="ls -ahlG"
-alias lls="ls -ahltcG"
+alias ll="ls -AhlG"
+alias lls="ls -AhltcG"
 alias show-hidden="defaults write com.apple.finder AppleShowAllFiles TRUE;killall Finder"
 alias hide-hidden="defaults write com.apple.finder AppleShowAllFiles FALSE;killall Finder"
 alias google-chrome="/usr/bin/open -a \"/Applications/Google Chrome.app\""
