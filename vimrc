@@ -35,6 +35,9 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'matchit.zip'
 Bundle 'xolox/vim-session'
 Bundle 'techlivezheng/vim-plugin-minibufexpl'
+Bundle 'mileszs/ack.vim'
+Bundle 'mhinz/vim-startify'
+Bundle 'henrik/vim-indexed-search'
 
 " ===== RubyAndRails
 
@@ -96,6 +99,7 @@ Bundle 'jpalardy/vim-slime'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Tabmerge'
 Bundle 'xolox/vim-notes' 
+Bundle 'tpope/vim-unimpaired'
 
 " ==== Disabled =====
 
@@ -109,19 +113,6 @@ Bundle 'xolox/vim-notes'
 " Bundle 'junegunn/vim-github-dashboard'
 " Bundle 'pangloss/vim-javascript'
 " Bundle 'myusuf3/numbers.vim'
-
-" mbe config
-map <Leader>mbe :MBEOpen<cr>
-map <Leader>mbc :MBEClose<cr>
-map <Leader>mbt :MBEToggle<cr>
-"
-" MiniBufExpl Colors
-hi MBENormal               guifg=#808080 guibg=fg
-hi MBEChanged              guifg=#CD5907 guibg=fg
-hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
-hi MBEVisibleChanged       guifg=#F1266F guibg=fg
-hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
-hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
 
 " number.vim config
 let g:enable_numbers = 0
@@ -232,7 +223,13 @@ let g:NERDRemoveExtraSpaces = 1
 map <Leader>/ <Plug>RubyTestRunLast " change from <Leader>l to <Leader>/ 
 
 " NERDtree
-autocmd vimenter * NERDTree
+" Get startify and nerdtree working on startup
+autocmd VimEnter *
+      \ if !argc() |
+      \   Startify |
+      \   NERDTree |
+      \   execute "normal \<c-w>w" |
+      \ endif
 let NERDTreeIgnore=['doc', '\.pyc', '\.rbc$', '\~$', '\.DS_Store$', 'tmp', 'log']
 let NERDTreeChDirMode=2
 let NERDTreeMouseMode=3
@@ -244,11 +241,25 @@ let NERDTreeShowBookmarks=1
 map <leader>n :NERDTreeToggle<cr>
 nmap <leader>f :NERDTreeFind<CR>
 
+" startify
+
+let g:startify_custom_header = [
+ \ '   _______  __  __  ______  ___   ___  ________  ______   ______  ______     ',
+ \ ' /_______/\/_/\/_/\/_____/\/___/\/__/\/_______/\/_____/\ /_____/\/_____/\    ',
+ \ ' \::: _  \ \:\ \:\ \:::__\/\::.\ \\ \ \::: _  \ \:::_ \ \\:::_ \ \:::_ \ \   ',
+ \ '  \::(_)  \/\:\ \:\ \:\ \  _\:: \/_) \ \::(_)  \ \:(_) ) )\:\ \ \ \:\ \ \ \  ',
+ \ '   \::  _  \ \:\ \:\ \:\ \/_/\:. __  ( (\:: __  \ \: __ `\ \:\ \ \ \:\ \ \ \ ',
+ \ '    \::(_)  \ \:\_\:\ \:\_\ \ \: \ )  \ \\:.\ \  \ \ \ `\ \ \:\_\ \ \:\_\ \ \',
+ \ '     \_______\/\_____\/\_____\/\__\/\__\/ \__\/\__\/\_\/ \_\/\_____\/\_____\/',
+ \ '',
+ \ '',
+ \ ]
+
 " powerline
 " set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 " airline
-let g:airline_theme='solarized'
+let g:airline_theme='tomorrow'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
 
@@ -261,10 +272,37 @@ colorscheme Tomorrow-Night
 " Enable Matchit.vim
 runtime macros/matchit.vim
 
+" mbe config
+let g:did_minibufexplorer_syntax_inits = 1
+map <Leader>mbe :MBEOpen<cr>
+map <Leader>mbc :MBEClose<cr>
+map <Leader>mbt :MBEToggle<cr>
+
+" map gitgutter jumping
+map <Leader>ngg :GitGutterNextHunk<cr>
+map <Leader>pgg :GitGutterNextHunk<cr>
+
+" MiniBufExpl Colors
+hi MBENormal               guifg=#808080 guibg=fg
+hi MBEChanged              guifg=#CD5907 guibg=fg
+hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
 
 """""""""""""""""""""""""""""""""""""""""""""
 " Functions from Vimcasts and other places! "
 """""""""""""""""""""""""""""""""""""""""""""
+
+"Close hidden buffers
+
+function DeleteHiddenBuffers()
+  let tpbl=[]
+  call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+  for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+    silent execute 'bwipeout' buf
+  endfor
+endfunction
 
 " Allows javascript expected bracket movement
 inoremap <C-Return> <CR><CR><C-o>k<Tab>
@@ -290,15 +328,15 @@ map n nzz
 
 " StripTrailingWhitespaces function and mapping with autocmd on saves
 function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  %s/\s\+$//e
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
 endfunction
 
 nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
