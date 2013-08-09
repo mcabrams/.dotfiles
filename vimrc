@@ -230,6 +230,7 @@ autocmd VimEnter *
       \   NERDTree |
       \   execute "normal \<c-w>w" |
       \ endif
+hi StartifyHeader  ctermfg=203
 let NERDTreeIgnore=['doc', '\.pyc', '\.rbc$', '\~$', '\.DS_Store$', 'tmp', 'log']
 let NERDTreeChDirMode=2
 let NERDTreeMouseMode=3
@@ -408,6 +409,27 @@ function! SummarizeTabs()
   endtry
 endfunction
 
+"Close hidden buffers in current tab
+command! -nargs=* Only call CloseHiddenBuffers()
+function! CloseHiddenBuffers()
+  " figure out which buffers are visible in any tab
+  let visible = {}
+  for t in range(1, tabpagenr('$'))
+    for b in tabpagebuflist(t)
+      let visible[b] = 1
+    endfor
+  endfor
+  " close any buffer that are loaded and not visible
+  let l:tally = 0
+  for b in range(1, bufnr('$'))
+    if bufloaded(b) && !has_key(visible, b)
+      let l:tally += 1
+      exe 'bw ' . b
+    endif
+  endfor
+  echon "Deleted " . l:tally . " buffers"
+endfun
+
 " Grab path and line number in @
 nnoremap <leader>y :let @+=expand("%") . ':' . line(".")<CR>
 
@@ -425,6 +447,9 @@ nmap <leader>v :tabedit $MYVIMRC<CR>
 
 " Reopen last file in vs
 nmap <c-s-t> :vs<bar>:b#<CR>
+
+" Open browser and navigate to file/line under cursor
+nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
 
 " ================ Completion =======================
 set wildmode=full
