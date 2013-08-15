@@ -75,6 +75,7 @@ Bundle 'skammer/vim-css-color'
 Bundle 'xolox/vim-colorscheme-switcher'
 Bundle 'croaky/vim-colors-github'
 Bundle 'mcabrams/github.vim'
+Bundle 'mikewest/vimroom'
 
 " === Prereqs ======
 
@@ -87,7 +88,7 @@ Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'jpalardy/spacehi.vim'
 Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 Bundle 'UltiSnips'
 Bundle 'rizzatti/dash.vim'
 Bundle 'scrooloose/nerdcommenter'
@@ -100,6 +101,7 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'Tabmerge'
 Bundle 'xolox/vim-notes' 
 Bundle 'tpope/vim-unimpaired'
+Bundle 'moll/vim-node'
 
 " ==== Disabled =====
 
@@ -128,11 +130,6 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips/mcabrams_snips"]
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails = 1
 
-" set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %l,\ col:\ %c%v\ (%p)%)
-" set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"set statusline+=rvm#statusline()
 filetype plugin indent on
 
 autocmd! BufRead,BufNewFile *.sass setfiletype sass
@@ -273,6 +270,9 @@ colorscheme Tomorrow-Night
 " Enable Matchit.vim
 runtime macros/matchit.vim
 
+" Disable vim-session autosave
+let g:session_autosave = 'no'
+
 " mbe config
 let g:did_minibufexplorer_syntax_inits = 1
 map <Leader>mbe :MBEOpen<cr>
@@ -295,9 +295,12 @@ hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
 " Functions from Vimcasts and other places! "
 """""""""""""""""""""""""""""""""""""""""""""
 
+" Store swap file in single local directory
+set directory=~/.vim/swap,.
+
 "Close hidden buffers
 
-function DeleteHiddenBuffers()
+function! DeleteHiddenBuffers()
   let tpbl=[]
   call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
   for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
