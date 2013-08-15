@@ -86,7 +86,6 @@ Bundle 'xolox/vim-misc'
 
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
-Bundle 'jpalardy/spacehi.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'mattn/emmet-vim'
 Bundle 'UltiSnips'
@@ -99,9 +98,10 @@ Bundle 'itspriddle/vim-marked'
 Bundle 'jpalardy/vim-slime'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Tabmerge'
-Bundle 'xolox/vim-notes' 
+Bundle 'xolox/vim-notes'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'moll/vim-node'
+Bundle 'csexton/trailertrash.vim'
 
 " ==== Disabled =====
 
@@ -143,7 +143,7 @@ set autoindent
 set smartindent
 set cursorline
 set go-=L
-set go-=r 
+set go-=r
 set history=1000
 set hlsearch
 set incsearch
@@ -200,7 +200,7 @@ endfunction
 " indentLine setup
 
 "let g:indentLine_char = '⁞'
-"let g:indentLine_color_gui = '#3b3b3b' 
+"let g:indentLine_color_gui = '#3b3b3b'
 "let g:indentLine_noConcealCursor=0
 
 " Tagbar
@@ -217,7 +217,7 @@ let g:NERDRemoveExtraSpaces = 1
 
 " Rubytest
 " let g:rubytest_in_quickfix = 1
-map <Leader>/ <Plug>RubyTestRunLast " change from <Leader>l to <Leader>/ 
+map <Leader>/ <Plug>RubyTestRunLast " change from <Leader>l to <Leader>/
 
 " NERDtree
 " Get startify and nerdtree working on startup
@@ -329,22 +329,6 @@ map n nzz
 " Nohlsearch hotkeys
 
 :nnoremap <CR> :nohlsearch<cr>
-
-" StripTrailingWhitespaces function and mapping with autocmd on saves
-function! <SID>StripTrailingWhitespaces()
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Do the business:
-  %s/\s\+$//e
-  " Clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
-endfunction
-
-nnoremap <silent> <F5> :call <SID>StripTrailingWhitespaces()<CR>
-" autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
 
 function! Preserve(command)
   " Preparation: save last search, and cursor position.
