@@ -282,6 +282,9 @@ map <Leader>mbt :MBEToggle<cr>
 map <Leader>ngg :GitGutterNextHunk<cr>
 map <Leader>pgg :GitGutterNextHunk<cr>
 
+" Trade accuracy for speed
+let g:gitgutter_eager = 0
+
 " MiniBufExpl Colors
 hi MBENormal               guifg=#808080 guibg=fg
 hi MBEChanged              guifg=#CD5907 guibg=fg
