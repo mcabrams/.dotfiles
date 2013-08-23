@@ -101,6 +101,7 @@ Bundle 'xolox/vim-notes'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'moll/vim-node'
 Bundle 'csexton/trailertrash.vim'
+Bundle 'xolox/vim-shell'
 
 " ==== Disabled =====
 
@@ -226,7 +227,7 @@ autocmd VimEnter *
       \   NERDTree |
       \   execute "normal \<c-w>w" |
       \ endif
-hi StartifyHeader  ctermfg=203
+
 let NERDTreeIgnore=['doc', '\.pyc', '\.rbc$', '\~$', '\.DS_Store$', 'tmp', 'log']
 let NERDTreeChDirMode=2
 let NERDTreeMouseMode=3
