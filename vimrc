@@ -238,7 +238,7 @@ let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks=1
 map <leader>n :NERDTreeToggle<cr>
 nmap <leader>f :NERDTreeFind<CR>
-let g:ctrlp_reuse_window = 'startify' "Avoid opening in NERDTree and creating a split
+autocmd FileType startify setlocal buftype= "Avoid opening in NERDTree and creating a split
 
 " startify
 
