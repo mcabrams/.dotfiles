@@ -261,6 +261,7 @@ let g:startify_custom_header = [
 let g:airline_theme='tomorrow'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
+let g:airline#extensions#branch#enabled = 1 "enable fugitive/lawrencium integration
 
 " Colorscheme
 " colorscheme railscasts
@@ -455,3 +456,6 @@ set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*/tmp/*
+
+" Angular specific
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
