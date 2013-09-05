@@ -19,4 +19,9 @@
 	co = checkout
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   url =! bash -c 'git config --get remote.origin.url | sed -E "s/.+:\\(.+\\)\\.git$/https:\\\\/\\\\/github\\\\.com\\\\/\\\\1/g"'
-  unstage = 'reset HEAD --'
+  unstage-file = reset HEAD
+  diff-against-stash = stash show -p
+  undo-last-commit = reset --soft HEAD^
+	last-commit = rev-parse HEAD
+[advice]
+	statusHints = false
