@@ -23,5 +23,6 @@
   diff-against-stash = stash show -p
   undo-last-commit = reset --soft HEAD^
 	last-commit = rev-parse HEAD
+	gs = git
 [advice]
 	statusHints = false
