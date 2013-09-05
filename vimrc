@@ -28,6 +28,10 @@ Bundle 'xolox/vim-easytags'
 Bundle 'Tagbar'
 Bundle 'vim-scripts/taglist.vim'
 
+" ===== Git =======
+
+Bundle 'tpope/vim-fugitive'
+
 " ===== Navigation =======
 
 Bundle 'ctrlp.vim'
@@ -51,6 +55,10 @@ Bundle 'blockle.vim'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'marijnh/tern_for_vim'
 Bundle 'teramako/jscomplete-vim'
+Bundle 'maksimr/vim-jsbeautify'
+
+"Required for vim-jsbeautify
+Bundle 'einars/js-beautify'
 
 " ===== Syntax ======
 
@@ -75,6 +83,10 @@ Bundle 'xolox/vim-colorscheme-switcher'
 Bundle 'croaky/vim-colors-github'
 Bundle 'mcabrams/github.vim'
 Bundle 'mikewest/vimroom'
+Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }
+Bundle "biskark/vim-ultimate-colorscheme-utility.git"
+Bundle "quickfonts.vim"
+Bundle "Yggdroot/indentLine"
 
 " === Prereqs ======
 
@@ -84,7 +96,6 @@ Bundle 'xolox/vim-misc'
 " === Misc =========
 
 Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-fugitive'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'mattn/emmet-vim'
 Bundle 'UltiSnips'
@@ -102,6 +113,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'moll/vim-node'
 Bundle 'csexton/trailertrash.vim'
 Bundle 'xolox/vim-shell'
+Bundle 'chrisbra/csv.vim'
 
 " ==== Disabled =====
 
@@ -116,7 +128,15 @@ Bundle 'xolox/vim-shell'
 " Bundle 'pangloss/vim-javascript'
 " Bundle 'myusuf3/numbers.vim'
 
-" number.vim config
+" EasyAlign hotkey setup
+vnoremap <silent> <leader>ea :EasyAlign<cr>
+
+" Vundle hotkey setup
+nmap <leader>bi :BundleInstall<cr>
+nmap <leader>bc :BundleClean<cr>
+nmap <leader>bu :BundleUpdate<cr>
+
+" numbers.vim config
 let g:enable_numbers = 0
 
 " vim-notes config
@@ -159,6 +179,9 @@ elseif has("clipboard")
   set clipboard=unnamed
 endif
 
+" Directory changes depending on what file you're working with
+set autochdir
+
 
 " ================= Folding ========================
 
@@ -177,12 +200,11 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
-" set guifont=Monaco\ for\ Powerline:h12
 set linespace=2
-" set guifont=Andale\ Mono:h12
-set guifont=Menlo\ for\ Powerline:h11
-" set guifont=Consolas\ for\ Powerline:h12
-" set linespace=1
+set guifont=Monaco\ for\ Powerline:h12
+" set guifont=Menlo\ for\ Powerline:h11
+" set guifont=Source\ Code\ Pro:h11
+
 " autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 " autocmd FileType sass set omnifunc=sasscomplete#CompleteSASS
 autocmd FileType javascript
@@ -197,11 +219,16 @@ function! ChangePaste(type, ...)
   silent exe "normal! p"
 endfunction
 
+" Quick font switching setup hotkeys
+nmap <leader>qF :QuickFontSmaller<CR>
+nmap <leader>qf :QuickFontBigger<CR>
+nmap <leader>qi :QuickFontInfo<CR>
+
 " indentLine setup
 
-"let g:indentLine_char = '⁞'
-"let g:indentLine_color_gui = '#3b3b3b'
-"let g:indentLine_noConcealCursor=0
+let g:indentLine_char = '⁞'
+let g:indentLine_color_gui = '#3b3b3b'
+let g:indentLine_noConcealCursor=0
 
 " Tagbar
 map <leader>g :TagbarToggle<CR>
@@ -437,11 +464,17 @@ set listchars=tab:▸\ ,eol:¬
 " Allow vimrc editing
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
+" Source vimrc changes
+nmap <leader>r :source $MYVIMRC<CR>
+
 " Reopen last file in vs
 nmap <c-s-t> :vs<bar>:b#<CR>
 
 " Open browser and navigate to file/line under cursor
 nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
+
+" Search and replace selected text shortkey
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " ================ Completion =======================
 set wildmode=full
@@ -459,3 +492,13 @@ set wildignore+=*/tmp/*
 
 " Angular specific
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+
+" JsBeautify stuff
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+" add wrap for git commits
+autocmd Filetype gitcommit spell textwidth=72
