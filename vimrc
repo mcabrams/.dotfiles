@@ -98,7 +98,7 @@ Bundle 'xolox/vim-misc'
 Bundle 'bling/vim-airline'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'mattn/emmet-vim'
-Bundle 'UltiSnips'
+Bundle 'SirVer/ultisnips'
 Bundle 'rizzatti/dash.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'surround.vim'
@@ -114,6 +114,7 @@ Bundle 'moll/vim-node'
 Bundle 'csexton/trailertrash.vim'
 Bundle 'xolox/vim-shell'
 Bundle 'chrisbra/csv.vim'
+Bundle 'tpope/vim-markdown'
 
 " ==== Disabled =====
 
@@ -127,6 +128,16 @@ Bundle 'chrisbra/csv.vim'
 " Bundle 'junegunn/vim-github-dashboard'
 " Bundle 'pangloss/vim-javascript'
 " Bundle 'myusuf3/numbers.vim'
+
+" Don't move this line, should be below last Bundle '...' always!
+filetype plugin indent on
+
+" Setup YCM
+
+let g:ycm_key_list_previous_completion = ['<Up>']
+
+" Fugitive hotkey setup
+nmap <leader>gl :Glog -n 10 --<cr>
 
 " EasyAlign hotkey setup
 vnoremap <silent> <leader>ea :EasyAlign<cr>
@@ -149,8 +160,6 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips/mcabrams_snips"]
 " rails.vim
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_rails = 1
-
-filetype plugin indent on
 
 autocmd! BufRead,BufNewFile *.sass setfiletype sass
 autocmd! BufRead,BufNewFile *.scss setfiletype scss
@@ -205,8 +214,6 @@ set guifont=Monaco\ for\ Powerline:h12
 " set guifont=Menlo\ for\ Powerline:h11
 " set guifont=Source\ Code\ Pro:h11
 
-" autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-" autocmd FileType sass set omnifunc=sasscomplete#CompleteSASS
 autocmd FileType javascript
   \ :setl omnifunc=jscomplete#CompleteJS
 
