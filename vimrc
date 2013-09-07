@@ -134,7 +134,11 @@ filetype plugin indent on
 
 " Setup YCM
 
-let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_filetype_blacklist = {
+      \ 'notes' : 1,
+      \ 'text' : 1,
+      \ 'unite' : 1,
+      \}
 
 " Fugitive hotkey setup
 nmap <leader>gl :Glog -n 10 --<cr>
@@ -155,7 +159,10 @@ let g:enable_numbers = 0
 :let g:notes_suffix = '.txt'
 :let g:notes_title_sync = 'rename_file'
 
+"UltiSnips Config
+
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips/mcabrams_snips"]
+let g:UltiSnipsExpandTrigger="<c-j>"
 
 " rails.vim
 let g:rubycomplete_buffer_loading = 1
