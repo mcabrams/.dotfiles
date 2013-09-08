@@ -1,0 +1,3 @@
+[submodule "vim-node"]
+	path = vim-node
+	url = https://github.com/guileen/vim-node
