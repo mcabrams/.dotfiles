@@ -9,3 +9,5 @@ Create some type of install script that manually creates symlinks without user h
 File/directory specific notes
 --------
 `mcabrams_snips/` should be symlinked in `~/.vim/bundle/UltiSnips/UltiSnips/`
+
+`dict` contains a submodule vim-node. The `dict` directory should be symlinked in `!/.vim/dict/`
