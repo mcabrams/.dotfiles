@@ -60,6 +60,10 @@ Bundle 'maksimr/vim-jsbeautify'
 "Required for vim-jsbeautify
 Bundle 'einars/js-beautify'
 
+" === Node
+" Bundle 'myhere/vim-nodejs-complete'
+" Bundle 'guileen/vim-node'
+
 " ===== Syntax ======
 
 Bundle 'Haml'
@@ -132,8 +136,22 @@ Bundle 'tpope/vim-markdown'
 " Don't move this line, should be below last Bundle '...' always!
 filetype plugin indent on
 
-" Setup YCM
+autocmd FileType javascript
+  \ :setl omnifunc=jscomplete#CompleteJS
 
+let g:jscomplete_use = ['dom', 'moz']
+
+" Configure nodejs complete
+let g:nodejs_complete_config = {
+\  'js_compl_fn': 'jscomplete#CompleteJS',
+\  'max_node_compl_len': 15
+\}
+
+" Setup YCM
+" Set prev completion keylist to up key just so no longer using shift-tab
+" which conflicted with delimitmate jump through delimiter
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_filetype_blacklist = {
       \ 'notes' : 1,
       \ 'text' : 1,
@@ -195,6 +213,12 @@ elseif has("clipboard")
   set clipboard=unnamed
 endif
 
+" if exists('+colorcolumn')
+  " set colorcolumn=80
+" else
+  " au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+" endif
+
 " Directory changes depending on what file you're working with
 set autochdir
 
@@ -221,10 +245,6 @@ set guifont=Monaco\ for\ Powerline:h12
 " set guifont=Menlo\ for\ Powerline:h11
 " set guifont=Source\ Code\ Pro:h11
 
-autocmd FileType javascript
-  \ :setl omnifunc=jscomplete#CompleteJS
-
-let g:jscomplete_use = ['dom', 'moz']
 
 "This allows for change paste motion cp{motion}
 nmap <silent> cp :set opfunc=ChangePaste<CR>g@
