@@ -136,6 +136,8 @@ Bundle 'tpope/vim-markdown'
 " Don't move this line, should be below last Bundle '...' always!
 filetype plugin indent on
 
+au FileType javascript set dictionary+=$HOME/.vim/dict/node/dict/dict/node.dict
+
 autocmd FileType javascript
   \ :setl omnifunc=jscomplete#CompleteJS
 
@@ -146,17 +148,6 @@ let g:nodejs_complete_config = {
 \  'js_compl_fn': 'jscomplete#CompleteJS',
 \  'max_node_compl_len': 15
 \}
-
-" Setup YCM
-" Set prev completion keylist to up key just so no longer using shift-tab
-" which conflicted with delimitmate jump through delimiter
-let g:ycm_key_list_previous_completion = ['<Up>']
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_filetype_blacklist = {
-      \ 'notes' : 1,
-      \ 'text' : 1,
-      \ 'unite' : 1,
-      \}
 
 " Fugitive hotkey setup
 nmap <leader>gl :Glog -n 10 --<cr>
@@ -169,22 +160,10 @@ nmap <leader>bi :BundleInstall<cr>
 nmap <leader>bc :BundleClean<cr>
 nmap <leader>bu :BundleUpdate<cr>
 
-" numbers.vim config
-let g:enable_numbers = 0
-
-" vim-notes config
-:let g:notes_directories = ['~/Dropbox/Notes']
-:let g:notes_suffix = '.txt'
-:let g:notes_title_sync = 'rename_file'
-
 "UltiSnips Config
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips/mcabrams_snips"]
 let g:UltiSnipsExpandTrigger="<c-j>"
-
-" rails.vim
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_rails = 1
 
 autocmd! BufRead,BufNewFile *.sass setfiletype sass
 autocmd! BufRead,BufNewFile *.scss setfiletype scss
@@ -241,9 +220,10 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set linespace=2
-set guifont=Monaco\ for\ Powerline:h12
-" set guifont=Menlo\ for\ Powerline:h11
+" set guifont=Monaco:h11
+" set guifont=Menlo:h11
 " set guifont=Source\ Code\ Pro:h11
+set guifont=Source\ Code\ Pro\ Light:h11
 
 
 "This allows for change paste motion cp{motion}
@@ -252,29 +232,6 @@ function! ChangePaste(type, ...)
   silent exe "normal! `[v`]\"_c"
   silent exe "normal! p"
 endfunction
-
-" Quick font switching setup hotkeys
-nmap <leader>qF :QuickFontSmaller<CR>
-nmap <leader>qf :QuickFontBigger<CR>
-nmap <leader>qi :QuickFontInfo<CR>
-
-" indentLine setup
-
-let g:indentLine_char = '⁞'
-let g:indentLine_color_gui = '#3b3b3b'
-let g:indentLine_noConcealCursor=0
-
-" Tagbar
-map <leader>g :TagbarToggle<CR>
-
-" Slime.vim
-
-let g:slime_target = "tmux"
-
-"nerdcommenter
-
-let g:NERDSpaceDelims = 1
-let g:NERDRemoveExtraSpaces = 1
 
 " Rubytest
 " let g:rubytest_in_quickfix = 1
@@ -301,29 +258,6 @@ map <leader>n :NERDTreeToggle<cr>
 nmap <leader>f :NERDTreeFind<CR>
 autocmd FileType startify setlocal buftype= "Avoid opening in NERDTree and creating a split
 
-" startify
-
-let g:startify_custom_header = [
- \ '   _______  __  __  ______  ___   ___  ________  ______   ______  ______     ',
- \ ' /_______/\/_/\/_/\/_____/\/___/\/__/\/_______/\/_____/\ /_____/\/_____/\    ',
- \ ' \::: _  \ \:\ \:\ \:::__\/\::.\ \\ \ \::: _  \ \:::_ \ \\:::_ \ \:::_ \ \   ',
- \ '  \::(_)  \/\:\ \:\ \:\ \  _\:: \/_) \ \::(_)  \ \:(_) ) )\:\ \ \ \:\ \ \ \  ',
- \ '   \::  _  \ \:\ \:\ \:\ \/_/\:. __  ( (\:: __  \ \: __ `\ \:\ \ \ \:\ \ \ \ ',
- \ '    \::(_)  \ \:\_\:\ \:\_\ \ \: \ )  \ \\:.\ \  \ \ \ `\ \ \:\_\ \ \:\_\ \ \',
- \ '     \_______\/\_____\/\_____\/\__\/\__\/ \__\/\__\/\_\/ \_\/\_____\/\_____\/',
- \ '',
- \ '',
- \ ]
-
-" powerline
-" set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-
-" airline
-let g:airline_theme='tomorrow'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline#extensions#branch#enabled = 1 "enable fugitive/lawrencium integration
-
 " Colorscheme
 " colorscheme railscasts
 colorscheme Tomorrow-Night
@@ -333,21 +267,16 @@ colorscheme Tomorrow-Night
 " Enable Matchit.vim
 runtime macros/matchit.vim
 
-" Disable vim-session autosave
-let g:session_autosave = 'no'
-
 " mbe config
-let g:did_minibufexplorer_syntax_inits = 1
 map <Leader>mbe :MBEOpen<cr>
 map <Leader>mbc :MBEClose<cr>
 map <Leader>mbt :MBEToggle<cr>
 
+map <leader>g :TagbarToggle<CR>
+
 " map gitgutter jumping
 map <Leader>ngg :GitGutterNextHunk<cr>
 map <Leader>pgg :GitGutterNextHunk<cr>
-
-" Trade accuracy for speed
-let g:gitgutter_eager = 0
 
 " MiniBufExpl Colors
 hi MBENormal               guifg=#808080 guibg=fg
