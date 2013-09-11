@@ -123,7 +123,6 @@ Bundle 'tpope/vim-markdown'
 " ==== Disabled =====
 
 " Bundle 'bufexplorer.zip'
-" Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 " Bundle 'othree/xml.vim'
 " Bundle 'jistr/vim-nerdtree-tabs'
 " Bundle 'AutoTag'
