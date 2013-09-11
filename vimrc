@@ -89,7 +89,6 @@ Bundle 'mcabrams/github.vim'
 Bundle 'mikewest/vimroom'
 Bundle "daylerees/colour-schemes", { "rtp": "vim-themes/" }
 Bundle "biskark/vim-ultimate-colorscheme-utility.git"
-Bundle "quickfonts.vim"
 Bundle "Yggdroot/indentLine"
 
 " === Prereqs ======
@@ -219,10 +218,10 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set linespace=2
-" set guifont=Monaco:h11
+set guifont=Monaco:h11
 " set guifont=Menlo:h11
 " set guifont=Source\ Code\ Pro:h11
-set guifont=Source\ Code\ Pro\ Light:h11
+" set guifont=Source\ Code\ Pro\ Light:h11
 
 
 "This allows for change paste motion cp{motion}
