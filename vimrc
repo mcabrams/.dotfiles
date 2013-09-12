@@ -118,6 +118,7 @@ Bundle 'csexton/trailertrash.vim'
 Bundle 'xolox/vim-shell'
 Bundle 'chrisbra/csv.vim'
 Bundle 'tpope/vim-markdown'
+Bundle 'vim-scripts/mru.vim'
 
 " ==== Disabled =====
 
@@ -196,10 +197,6 @@ endif
   " au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 " endif
 
-" Directory changes depending on what file you're working with
-set autochdir
-
-
 " ================= Folding ========================
 
 set foldmethod=indent   "fold based on indent
@@ -244,7 +241,7 @@ autocmd VimEnter *
       \   execute "normal \<c-w>w" |
       \ endif
 
-let NERDTreeIgnore=['doc', '\.pyc', '\.rbc$', '\~$', '\.DS_Store$', 'tmp', 'log']
+let NERDTreeIgnore=['doc', '\.pyc', '\.rbc$', '\~$', '\.DS_Store$', 'tmp']
 let NERDTreeChDirMode=2
 let NERDTreeMouseMode=3
 let NERDTreeQuitOnOpen=0
