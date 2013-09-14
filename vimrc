@@ -42,6 +42,7 @@ Bundle 'techlivezheng/vim-plugin-minibufexpl'
 Bundle 'mileszs/ack.vim'
 Bundle 'mhinz/vim-startify'
 Bundle 'henrik/vim-indexed-search'
+Bundle 'Lokaltog/vim-easymotion'
 
 " ===== RubyAndRails
 
@@ -124,10 +125,8 @@ Bundle 'vim-scripts/mru.vim'
 
 " Bundle 'bufexplorer.zip'
 " Bundle 'othree/xml.vim'
-" Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'jistr/vim-nerdtree-tabs'
 " Bundle 'AutoTag'
-" Bundle 'Yggdroot/indentLine'
-" Bundle 'SuperTab'
 " Bundle 'junegunn/vim-github-dashboard'
 " Bundle 'pangloss/vim-javascript'
 " Bundle 'myusuf3/numbers.vim'
@@ -147,6 +146,28 @@ let g:nodejs_complete_config = {
 \  'js_compl_fn': 'jscomplete#CompleteJS',
 \  'max_node_compl_len': 15
 \}
+
+" Ulticolor hotkey setup mostly to reduce interference with easy motion
+
+" think favorite color
+let g:ulti_color_Next_Fav = '<leader><leader>fc'
+let g:ulti_color_Prev_Fav = '<leader><leader>fC'
+
+" think favorite global color
+let g:ulti_color_Next_Global_Fav = '<leader><leader>fgc'
+let g:ulti_color_Prev_Global_Fav = '<leader><leader>fgC'
+
+" think favorite font
+let g:ulti_color_Font_Next_Fav = '<leader><leader>ff'
+let g:ulti_color_Font_Prev_Fav = '<leader><leader>fF'
+
+" think favorite global font
+let g:ulti_color_Font_Next_Global_Fav = '<leader><leader>fgf'
+let g:ulti_color_Font_Prev_Global_Fav = '<leader><leader>fgF'
+
+" think add font, remove font
+let g:ulti_color_Font_Add_Fav = '<leader><leader>af'
+let g:ulti_color_Font_Remove_Fav = '<leader><leader>rf'
 
 " Fugitive hotkey setup
 nmap <leader>gl :Glog -n 10 --<cr>
