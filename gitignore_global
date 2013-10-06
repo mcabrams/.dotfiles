@@ -2,6 +2,10 @@
 # all repositories, run the following in terminal:
 # git config --global core.excludesfile ~/.gitignore_global
 
+# Cached files #
+################
+.sass-cache/
+
 # Compiled source #
 ###################
 *.com
