@@ -24,3 +24,6 @@ let g:startify_custom_header = [
 
 " hi StartifyHeader  ctermfg=203
 hi StartifyHeader  guifg=#F1266F
+
+let g:startify_session_dir = '~/.vim/session'
+let g:startify_list_order = ['files', 'dir', 'bookmarks', 'sessions']
