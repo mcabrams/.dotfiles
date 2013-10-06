@@ -25,7 +25,7 @@ Bundle 'delimitMate.vim'
 " ===== Ctags =======
 
 Bundle 'xolox/vim-easytags'
-Bundle 'Tagbar'
+" Bundle 'Tagbar'
 Bundle 'vim-scripts/taglist.vim'
 
 " ===== Git =======
@@ -43,6 +43,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'mhinz/vim-startify'
 Bundle 'henrik/vim-indexed-search'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'gcmt/breeze.vim'
 
 " ===== RubyAndRails
 
@@ -125,7 +126,7 @@ Bundle 'vim-scripts/mru.vim'
 
 " Bundle 'bufexplorer.zip'
 " Bundle 'othree/xml.vim'
-Bundle 'jistr/vim-nerdtree-tabs'
+" Bundle 'jistr/vim-nerdtree-tabs'
 " Bundle 'AutoTag'
 " Bundle 'junegunn/vim-github-dashboard'
 " Bundle 'pangloss/vim-javascript'
@@ -135,6 +136,7 @@ Bundle 'jistr/vim-nerdtree-tabs'
 filetype plugin indent on
 
 au FileType javascript set dictionary+=$HOME/.vim/dict/node/dict/dict/node.dict
+au BufRead,BufNewFile *.txt,*.tex set wrap linebreak nolist textwidth=0 wrapmargin=0
 
 autocmd FileType javascript
   \ :setl omnifunc=jscomplete#CompleteJS
