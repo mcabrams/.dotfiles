@@ -24,7 +24,9 @@ Bundle 'delimitMate.vim'
 
 " ===== Ctags =======
 
-Bundle 'xolox/vim-easytags'
+if has ('gui_running')
+  Bundle 'xolox/vim-easytags'
+endif
 " Bundle 'Tagbar'
 Bundle 'vim-scripts/taglist.vim'
 
@@ -56,7 +58,6 @@ Bundle 'blockle.vim'
 
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'marijnh/tern_for_vim'
-Bundle 'teramako/jscomplete-vim'
 Bundle 'maksimr/vim-jsbeautify'
 
 "Required for vim-jsbeautify
@@ -73,14 +74,15 @@ Bundle 'hail2u/vim-css3-syntax'
 Bundle 'html5.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-haml'
+Bundle 'cakebaker/scss-syntax.vim'
 
 " ===== Testing ======
 
-Bundle 'Rubytest.vim'
+"Bundle 'Rubytest.vim'
 Bundle 'rails.vim'
 
 " === Theme/Colors ===
-
+Bundle 'nanotech/jellybeans.vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'chrisbra/color_highlight'
 Bundle 'chriskempson/vim-tomorrow-theme'
@@ -121,13 +123,14 @@ Bundle 'xolox/vim-shell'
 Bundle 'chrisbra/csv.vim'
 Bundle 'tpope/vim-markdown'
 Bundle 'vim-scripts/mru.vim'
+Bundle 'vim-pandoc/vim-pandoc'
+Bundle 'PeterRincker/vim-argumentative'
 
 " ==== Disabled =====
 
 " Bundle 'bufexplorer.zip'
 " Bundle 'othree/xml.vim'
 " Bundle 'jistr/vim-nerdtree-tabs'
-" Bundle 'AutoTag'
 " Bundle 'junegunn/vim-github-dashboard'
 " Bundle 'pangloss/vim-javascript'
 " Bundle 'myusuf3/numbers.vim'
@@ -135,19 +138,7 @@ Bundle 'vim-scripts/mru.vim'
 " Don't move this line, should be below last Bundle '...' always!
 filetype plugin indent on
 
-au FileType javascript set dictionary+=$HOME/.vim/dict/node/dict/dict/node.dict
 au BufRead,BufNewFile *.txt,*.tex set wrap linebreak nolist textwidth=0 wrapmargin=0
-
-autocmd FileType javascript
-  \ :setl omnifunc=jscomplete#CompleteJS
-
-let g:jscomplete_use = ['dom', 'moz']
-
-" Configure nodejs complete
-let g:nodejs_complete_config = {
-\  'js_compl_fn': 'jscomplete#CompleteJS',
-\  'max_node_compl_len': 15
-\}
 
 " Ulticolor hotkey setup mostly to reduce interference with easy motion
 
@@ -450,9 +441,6 @@ nmap <leader>r :source $MYVIMRC<CR>
 
 " Reopen last file in vs
 nmap <c-s-t> :vs<bar>:b#<CR>
-
-" Open browser and navigate to file/line under cursor
-nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
 
 " Search and replace selected text shortkey
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
