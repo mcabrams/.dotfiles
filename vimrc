@@ -14,16 +14,58 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " -------------------------------
+"  Beautifiers
+" -------------------------------
+
+Bundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
+
+" -------------------------------
+"  Buffer and File Navigation
+" -------------------------------
+
+Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
+Bundle 'mhinz/vim-startify'
+
+" -------------------------------
 "  Git
 " -------------------------------
 
 Bundle 'tpope/vim-fugitive'
 
 " -------------------------------
-"  UI
+"  Language Specific
 " -------------------------------
 
-Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-rails'
+Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'mustache/vim-mustache-handlebars'
+
+" -------------------------------
+"  Moving Around
+" -------------------------------
+
+Bundle 'benjifisher/matchit.zip'
+
+" -------------------------------
+"  Syntax Checking
+" -------------------------------
+
+Bundle 'scrooloose/syntastic'
+Bundle 'csexton/trailertrash.vim'
+
+" -------------------------------
+"  Syntaxes
+" -------------------------------
+
+Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'tpope/vim-haml'
+
+" -------------------------------
+"  Terminal Aids
+" -------------------------------
+
+Bundle 'sjl/vitality.vim'
 
 " -------------------------------
 "  Text Editing and Surrounding
@@ -35,18 +77,10 @@ Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/nerdcommenter'
 
 " -------------------------------
-"  Syntaxes
+"  Text Expansion
 " -------------------------------
 
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-rails'
-
-" -------------------------------
-"  Syntax Checking
-" -------------------------------
-
-Bundle 'scrooloose/syntastic'
-Bundle 'csexton/trailertrash.vim'
+Bundle 'mattn/emmet-vim'
 
 " -------------------------------
 "  Themes and Colors
@@ -55,20 +89,14 @@ Bundle 'csexton/trailertrash.vim'
 Bundle 'chriskempson/base16-vim'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'vim-scripts/colorsupport.vim'
+Bundle 'chrisbra/color_highlight'
 "Bundle 'godlygeek/csapprox'
 
 " -------------------------------
-"  Unite, et al.
+"  UI
 " -------------------------------
 
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimfiler.vim'
-
-" -------------------------------
-"  Terminal Aids
-" -------------------------------
-
-Bundle 'sjl/vitality.vim'
+Bundle 'bling/vim-airline'
 
 " This line needs to come immediately after Bundles
 filetype plugin indent on
@@ -127,6 +155,13 @@ set tabpagemax=20     " prevent vim from opening more than 20 tabs
 " ==============================================================================
 
 " ==============================================================================
+" GUI
+" ==============================================================================
+
+set guioptions-=r
+set guioptions-=T
+
+" ==============================================================================
 " Printing
 " ==============================================================================
 
@@ -179,6 +214,9 @@ set smartindent    " do clever autoindenting
 " ==============================================================================
 " Command Line Editing
 " ==============================================================================
+
+set wildmenu
+set wildignore+=*/tmp/*,*.so,*.swp,*.swo,*.zip
 
 " ==============================================================================
 " Executing External Commands
@@ -238,17 +276,26 @@ nmap <leader>bi :BundleInstall<cr>
 nmap <leader>bc :BundleClean<cr>
 nmap <leader>bu :BundleUpdate<cr>
 
+" Search and replace selected text shortkey
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+" NERDTree mappings
+map <leader>n :NERDTreeToggle<cr>
+nmap <leader>f :NERDTreeFind<CR>
+
 " ==============================================================================
 " Colors
 " ==============================================================================
 
-if !has("gui_running")
-  set term=screen-256color
-endif
-
 set t_Co=256             " set for 256 color colorschemes
 set background=light
-colorscheme base16-railscasts
+colorscheme base16-mocha
+
+if !has("gui_running")
+  set term=screen-256color
+  set background=dark
+  colorscheme Tomorrow-Night
+endif
 
 " ==============================================================================
 " Swap Files
@@ -260,10 +307,19 @@ set directory=~/.vim/swap,.
 " Autocommands
 " ==============================================================================
 
-augroup vimenter
+augroup vim_enter
   autocmd!
 
-  " Open a vimfiler tree automatically when Vim starts up
-  autocmd VimEnter * VimFilerExplorer
+  " Get startify and nerdtree working on startup
+  autocmd VimEnter *
+        \ if !argc() |
+        \   Startify |
+        \   NERDTree |
+        \   execute "normal \<c-w>w" |
+        \ endif
+augroup END
 
+augroup filetype_startify
+  autocmd!
+  autocmd FileType startify setlocal buftype= "Avoid opening in NERDTree and creating a split
 augroup END

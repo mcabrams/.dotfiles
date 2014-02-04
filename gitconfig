@@ -1,6 +1,8 @@
 [user]
-	name = "Matt Abrams"
+	name = "Matthew Abrams"
 	email = mcabrams1@gmail.com
+[credential]
+  helper = osxkeychain
 [branch]
 	autosetupmerge = true
 [help]
@@ -9,7 +11,7 @@
 	ui = true
 [core]
 	editor = mvim -f
-	excludesfile = /Users/matt/.gitignore_global
+	excludesfile = /Users/Matt/.gitignore_global
 [merge]
 	tool = diffmerge
 [mergetool "diffmerge"]
