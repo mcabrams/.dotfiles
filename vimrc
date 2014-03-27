@@ -26,6 +26,8 @@ Bundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mhinz/vim-startify'
+Bundle 'henrik/vim-indexed-search'
+Bundle 'yssl/QFEnter'
 
 " -------------------------------
 "  Git
@@ -37,15 +39,23 @@ Bundle 'tpope/vim-fugitive'
 "  Language Specific
 " -------------------------------
 
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'mustache/vim-mustache-handlebars'
 
 " -------------------------------
 "  Moving Around
 " -------------------------------
 
 Bundle 'benjifisher/matchit.zip'
+Bundle 'tpope/vim-unimpaired'
+
+" -------------------------------
+"  Project wide search and replace
+" -------------------------------
+
+" http://stackoverflow.com/questions/5686206/search-replace-using-quickfix-list-in-vim
+Bundle 'henrik/vim-qargs'
 
 " -------------------------------
 "  Syntax Checking
@@ -89,7 +99,7 @@ Bundle 'mattn/emmet-vim'
 Bundle 'chriskempson/base16-vim'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'vim-scripts/colorsupport.vim'
-Bundle 'chrisbra/color_highlight'
+Bundle 'chrisbra/Colorizer'
 "Bundle 'godlygeek/csapprox'
 
 " -------------------------------
@@ -279,9 +289,16 @@ nmap <leader>bu :BundleUpdate<cr>
 " Search and replace selected text shortkey
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
+" Search and replace selected text shortkey project wide (with qargs, should do Ggrep before)
+vnoremap <C-r>! "hy:Ggrep <C-R>h \| Qargs \| argdo %s/<C-R>h//gc \| update<left><left><left><left><left><left><left><left><left><left><left><left>
+
 " NERDTree mappings
 map <leader>n :NERDTreeToggle<cr>
 nmap <leader>f :NERDTreeFind<CR>
+
+" Copy filepath to clipboard
+nmap <leader>cp! :let @+ = expand("%:p")<CR>
+nmap <leader>cp :let @+ = expand("%")<CR>
 
 " ==============================================================================
 " Colors
@@ -307,6 +324,8 @@ set directory=~/.vim/swap,.
 " Autocommands
 " ==============================================================================
 
+" Interested why these are structured this way? Read: http://learnvimscriptthehardway.stevelosh.com/chapters/14.html
+
 augroup vim_enter
   autocmd!
 
@@ -322,4 +341,9 @@ augroup END
 augroup filetype_startify
   autocmd!
   autocmd FileType startify setlocal buftype= "Avoid opening in NERDTree and creating a split
+augroup END
+
+augroup vim_fugitive
+  autocmd!
+  autocmd QuickFixCmdPost *grep* cwindow
 augroup END
