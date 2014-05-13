@@ -42,6 +42,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'tpope/vim-endwise'
 
 " -------------------------------
 "  Moving Around
@@ -85,11 +86,13 @@ Bundle 'junegunn/vim-easy-align'
 Bundle 'Raimondi/delimitMate'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-abolish'
 
 " -------------------------------
 "  Text Expansion
 " -------------------------------
 
+Bundle 'SirVer/ultisnips'
 Bundle 'mattn/emmet-vim'
 
 " -------------------------------
@@ -99,7 +102,8 @@ Bundle 'mattn/emmet-vim'
 Bundle 'chriskempson/base16-vim'
 Bundle 'chriskempson/vim-tomorrow-theme'
 Bundle 'vim-scripts/colorsupport.vim'
-Bundle 'chrisbra/Colorizer'
+"Bundle 'chrisbra/Colorizer'
+Bundle 'lilydjwg/colorizer'
 "Bundle 'godlygeek/csapprox'
 
 " -------------------------------
@@ -107,6 +111,12 @@ Bundle 'chrisbra/Colorizer'
 " -------------------------------
 
 Bundle 'bling/vim-airline'
+
+" -------------------------------
+"  Utility
+" -------------------------------
+
+Bundle 'tpope/vim-repeat'
 
 " This line needs to come immediately after Bundles
 filetype plugin indent on
