@@ -308,7 +308,36 @@ nmap <leader>f :NERDTreeFind<CR>
 
 " Copy filepath to clipboard
 nmap <leader>cp! :let @+ = expand("%:p")<CR>
+nmap <leader>cpf :let @+ = expand("%") . " - Line number:" . line(".")<CR>
 nmap <leader>cp :let @+ = expand("%")<CR>
+
+" This allows html tags to be escaped
+nnoremap <Leader>he :'[,']call HtmlEscape()<CR>
+vnoremap <Leader>he :call HtmlEscape()<CR>
+
+function! HtmlEscape()
+  silent s/&/\&amp;/eg
+  silent s/</\&lt;/eg
+  silent s/>/\&gt;/eg
+endfunction
+
+" Go back to last active tab
+let g:lasttab = 1
+nmap <Leader>lt :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
+" Ggrep in new tab
+function! GgrepInNewTab(name)
+  tabe %
+  exe "Ggrep" a:name
+endfunction
+
+vnoremap <Leader>gg "jy:Ggrep <C-R>j<CR>
+nmap <Leader>gg "jyw:Ggrep <C-R>j<CR>
+vnoremap <Leader>ggt "jy:GgrepInNewTab <C-R>j<CR>
+nmap <Leader>ggt "jyw:GgrepInNewTab <C-R>j<CR>
+
+command! -nargs=1 GgrepInNewTab call GgrepInNewTab(<f-args>)
 
 " ==============================================================================
 " Colors
