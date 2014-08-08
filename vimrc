@@ -5,118 +5,121 @@
 set nocompatible              " be iMproved
 filetype off                  " required!
 
-" Add vundle to rootpath and set install path for bundles
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " NOTE: COMMENTS AFTER BUNDLE COMMANDS ARE NOT ALLOWED.
 " Let Vundle manage Vundle; required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " -------------------------------
 "  Beautifiers
 " -------------------------------
 
-Bundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
+Plugin 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 
 " -------------------------------
 "  Buffer and File Navigation
 " -------------------------------
 
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mhinz/vim-startify'
-Bundle 'henrik/vim-indexed-search'
-Bundle 'yssl/QFEnter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mhinz/vim-startify'
+Plugin 'henrik/vim-indexed-search'
+Plugin 'yssl/QFEnter'
 
 " -------------------------------
 "  Git
 " -------------------------------
 
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 " -------------------------------
 "  Language Specific
 " -------------------------------
 
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails'
-Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'tpope/vim-endwise'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'tpope/vim-endwise'
 
 " -------------------------------
 "  Moving Around
 " -------------------------------
 
-Bundle 'benjifisher/matchit.zip'
-Bundle 'tpope/vim-unimpaired'
+Plugin 'benjifisher/matchit.zip'
+Plugin 'tpope/vim-unimpaired'
 
 " -------------------------------
 "  Project wide search and replace
 " -------------------------------
 
 " http://stackoverflow.com/questions/5686206/search-replace-using-quickfix-list-in-vim
-Bundle 'henrik/vim-qargs'
+Plugin 'henrik/vim-qargs'
 
 " -------------------------------
 "  Syntax Checking
 " -------------------------------
 
-Bundle 'scrooloose/syntastic'
-Bundle 'csexton/trailertrash.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'csexton/trailertrash.vim'
 
 " -------------------------------
 "  Syntaxes
 " -------------------------------
 
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'tpope/vim-haml'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'tpope/vim-haml'
 
 " -------------------------------
 "  Terminal Aids
 " -------------------------------
 
-Bundle 'sjl/vitality.vim'
+Plugin 'sjl/vitality.vim'
 
 " -------------------------------
 "  Text Editing and Surrounding
 " -------------------------------
 
-Bundle 'junegunn/vim-easy-align'
-Bundle 'Raimondi/delimitMate'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-abolish'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-abolish'
 
 " -------------------------------
 "  Text Expansion
 " -------------------------------
 
-Bundle 'SirVer/ultisnips'
-Bundle 'mattn/emmet-vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'mattn/emmet-vim'
 
 " -------------------------------
 "  Themes and Colors
 " -------------------------------
 
-Bundle 'chriskempson/base16-vim'
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'vim-scripts/colorsupport.vim'
-"Bundle 'chrisbra/Colorizer'
-Bundle 'lilydjwg/colorizer'
-"Bundle 'godlygeek/csapprox'
+Plugin 'chriskempson/base16-vim'
+Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'vim-scripts/colorsupport.vim'
+"Plugin 'chrisbra/Colorizer'
+Plugin 'lilydjwg/colorizer'
+"Plugin 'godlygeek/csapprox'
 
 " -------------------------------
 "  UI
 " -------------------------------
 
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 
 " -------------------------------
 "  Utility
 " -------------------------------
 
-Bundle 'tpope/vim-repeat'
+Plugin 'tpope/vim-repeat'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 
 " This line needs to come immediately after Bundles
 filetype plugin indent on
