@@ -11,7 +11,7 @@
 	ui = true
 [core]
 	editor = mvim -f
-	excludesfile = /Users/Matt/.gitignore_global
+	excludesfile = /Users/matthewabrams/.gitignore_global
 [merge]
 	tool = diffmerge
 [mergetool "diffmerge"]
