@@ -347,7 +347,7 @@ command! -nargs=1 GgrepInNewTab call GgrepInNewTab(<f-args>)
 " ==============================================================================
 
 set t_Co=256             " set for 256 color colorschemes
-set background=light
+set background=dark
 colorscheme base16-mocha
 
 if !has("gui_running")
