@@ -181,8 +181,9 @@ set tabpagemax=20     " prevent vim from opening more than 20 tabs
 " GUI
 " ==============================================================================
 
-set guioptions-=r
-set guioptions-=T
+set guioptions-=r "remove right-hand-scrollbar
+set guioptions-=L "remove left-hand-scrollbar
+set guioptions-=T "remove toolbar
 
 " ==============================================================================
 " Printing
