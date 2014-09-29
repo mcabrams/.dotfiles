@@ -43,6 +43,7 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'tpope/vim-endwise'
+Plugin 'lepture/vim-velocity'
 
 " -------------------------------
 "  Moving Around
@@ -50,6 +51,7 @@ Plugin 'tpope/vim-endwise'
 
 Plugin 'benjifisher/matchit.zip'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'Lokaltog/vim-easymotion'
 
 " -------------------------------
 "  Project wide search and replace
@@ -87,6 +89,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-abolish'
+Plugin 'jgdavey/vim-blockle'
 
 " -------------------------------
 "  Text Expansion
@@ -310,10 +313,10 @@ vnoremap <C-r>! "hy:Ggrep <C-R>h \| Qargs \| argdo %s/<C-R>h//gc \| update<left>
 map <leader>n :NERDTreeToggle<cr>
 nmap <leader>f :NERDTreeFind<CR>
 
-" Copy filepath to clipboard
-nmap <leader>cp! :let @+ = expand("%:p")<CR>
-nmap <leader>cpf :let @+ = expand("%") . " - Line number:" . line(".")<CR>
-nmap <leader>cp :let @+ = expand("%")<CR>
+" Yank filepath to clipboard
+nmap <leader>yf! :let @+ = expand("%:p")<CR>
+nmap <leader>yff :let @+ = expand("%") . " - Line number:" . line(".")<CR>
+nmap <leader>yf :let @+ = expand("%")<CR>
 
 " This allows html tags to be escaped
 nnoremap <Leader>he :'[,']call HtmlEscape()<CR>
@@ -362,6 +365,7 @@ endif
 " ==============================================================================
 
 set directory=~/.vim/swap,.
+set backupdir=~/.vim/swap,.
 
 " ==============================================================================
 " Autocommands
