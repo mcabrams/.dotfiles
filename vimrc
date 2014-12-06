@@ -52,6 +52,10 @@ Plugin 'lepture/vim-velocity'
 Plugin 'benjifisher/matchit.zip'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'kana/vim-textobj-user'
+
+" Dependencies: 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
 
 " -------------------------------
 "  Project wide search and replace
@@ -153,6 +157,7 @@ set number
 set scrolloff=8         " start scrolling when we're 8 lines away from margins
 set sidescrolloff=15    " minimal number of columns to keep left and right of the cursor
 set sidescroll=1        " minimal number of columns to scroll horizontally
+set linespace=2         " number of pixel lines to use between characters
 
 " ==============================================================================
 " Syntax, Highlighting and Spelling
@@ -352,12 +357,13 @@ command! -nargs=1 GgrepInNewTab call GgrepInNewTab(<f-args>)
 
 set t_Co=256             " set for 256 color colorschemes
 set background=dark
-colorscheme base16-mocha
+colorscheme base16-ocean
+set guifont=Source\ Code\ Pro:h14
 
 if !has("gui_running")
   set term=screen-256color
   set background=dark
-  colorscheme Tomorrow-Night
+  colorscheme base16-ocean
 endif
 
 " ==============================================================================
@@ -394,3 +400,5 @@ augroup vim_fugitive
   autocmd!
   autocmd QuickFixCmdPost *grep* cwindow
 augroup END
+
+let g:syntastic_javascript_checkers = ['jsxhint']
