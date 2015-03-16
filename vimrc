@@ -34,6 +34,7 @@ Plugin 'yssl/QFEnter'
 " -------------------------------
 
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 " -------------------------------
 "  Language Specific
@@ -399,6 +400,11 @@ augroup END
 augroup vim_fugitive
   autocmd!
   autocmd QuickFixCmdPost *grep* cwindow
+augroup END
+
+augroup git_commit
+  autocmd!
+  autocmd Filetype gitcommit setlocal spell textwidth=72
 augroup END
 
 let g:syntastic_javascript_checkers = ['jsxhint']
