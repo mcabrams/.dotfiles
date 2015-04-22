@@ -28,6 +28,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'henrik/vim-indexed-search'
 Plugin 'yssl/QFEnter'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
 
 " -------------------------------
 "  Git
@@ -45,6 +47,9 @@ Plugin 'tpope/vim-rails'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'tpope/vim-endwise'
 Plugin 'lepture/vim-velocity'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'chrisbra/csv.vim'
 
 " -------------------------------
 "  Moving Around
@@ -304,6 +309,9 @@ function! ChangePaste(type, ...)
   silent exe "normal! p"
 endfunction
 
+"This shows space/tab/return characters
+nmap <leader>lc :set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<<CR> :set list<CR>
+
 " Vundle hotkey setup
 nmap <leader>bi :BundleInstall<cr>
 nmap <leader>bc :BundleClean<cr>
@@ -359,7 +367,7 @@ command! -nargs=1 GgrepInNewTab call GgrepInNewTab(<f-args>)
 set t_Co=256             " set for 256 color colorschemes
 set background=dark
 colorscheme base16-ocean
-set guifont=Source\ Code\ Pro:h14
+set guifont=Source\ Code\ Pro:h11
 
 if !has("gui_running")
   set term=screen-256color
@@ -407,4 +415,15 @@ augroup git_commit
   autocmd Filetype gitcommit setlocal spell textwidth=72
 augroup END
 
-let g:syntastic_javascript_checkers = ['jsxhint']
+au BufRead,BufNewFile *.json set filetype=json
+
+let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+let g:syntastic_json_checkers = ['jsonlint']
+let g:syntastic_javascript_eslint_exec = 'eslint'
+" let g:syntastic_javascript_checkers = ['jsxhint']
+" let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
+
+" Let Vim walk up directory hierarchy from CWD to root looking for tags file
+set tags=tags;/
+" Tell EasyTags to use the tags file found by Vim
+let g:easytags_dynamic_files = 1
