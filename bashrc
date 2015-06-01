@@ -10,10 +10,8 @@ alias mysql-autocomplete="mysql --auto-rehash -u root"
 
 alias rd="rm -rf"
 alias src="source ~/.bashrc"
-alias dropbox="cd $HOME/Dropbox/"
 alias grep="grep -irn -C2 --color"
 alias rvmgem="rvm gemset list"
-alias vp-code="cd $HOME/vp/viewpoints-com"
 alias tree="tree -CF"
 alias vim='mvim -v'
 alias vim="${vim}"
@@ -39,7 +37,6 @@ alias grr='git remote rm'
 alias gpu='git pull'
 alias gcl='git clone'
 
-source ~/vp/viewpoints-com/script/vp-dev-helpers.sh
 # source ~/.tmuxinator/tmuxinator.bash
 
 export EDITOR=mvim
