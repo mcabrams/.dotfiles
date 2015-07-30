@@ -405,6 +405,16 @@ augroup filetype_startify
   autocmd FileType startify setlocal buftype= "Avoid opening in NERDTree and creating a split
 augroup END
 
+augroup filetype_scss
+  autocmd!
+  autocmd FileType scss setlocal iskeyword+=-
+augroup END
+
+augroup filetype_html
+  autocmd!
+  autocmd FileType html setlocal iskeyword+=-
+augroup END
+
 augroup vim_fugitive
   autocmd!
   autocmd QuickFixCmdPost *grep* cwindow
