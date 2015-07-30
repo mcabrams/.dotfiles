@@ -7,3 +7,6 @@
 [submodule "dict/node"]
 	path = dict/node
 	url = https://github.com/guileen/vim-node
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
