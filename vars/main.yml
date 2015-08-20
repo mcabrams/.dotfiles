@@ -1,0 +1,47 @@
+---
+downloads: ~/.ansible-downloads/
+
+configure_sudoers: yes
+
+dotfiles_repo: https://github.com/geerlingguy/dotfiles.git
+dotfiles_repo_local_destination: ~/Dropbox/Development/GitHub/dotfiles
+dotfiles_files:
+  - .bash_profile
+  - .gitconfig
+  - .gitignore
+  - .inputrc
+  - .osx
+  - .vimrc
+
+homebrew_installed_packages:
+  - ansible
+  # - bash-completion
+  # - boot2docker
+  # - docker
+  - git
+  - python
+  - npm
+  - ios-sim
+  # - readline
+  - brew-cask
+
+homebrew_taps:
+  - caskroom/cask
+  - homebrew/binary
+  - homebrew/dupes
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  # - bettertouchtool
+  - google-chrome
+  - dropbox
+  # - fing
+  - firefox
+  # - handbrake
+  # - karabiner
+  - macvim
+  - nvalt
+  # - vagrant
+  # - vagrant-manager
+  - vlc
+  - virtualbox
