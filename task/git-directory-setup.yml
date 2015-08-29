@@ -1,0 +1,15 @@
+---
+- name: Ensure git personal directory exists.
+  file:
+    path: "{{ git_personal }}"
+    state: directory
+
+- name: Ensure git follow along directory exists.
+  file:
+    path: "{{ git_follow_along }}"
+    state: directory
+
+- name: Ensure git other directory exists.
+  file:
+    path: "{{ git_other }}"
+    state: directory

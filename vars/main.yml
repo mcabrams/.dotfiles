@@ -1,17 +1,12 @@
 ---
 downloads: ~/.ansible-downloads/
 
-configure_sudoers: yes
+git: ~/git/
+git_personal: ~/git/personal/
+git_follow_along: ~/git/follow_along/
+git_other: ~/git/other/
 
-dotfiles_repo: https://github.com/geerlingguy/dotfiles.git
-dotfiles_repo_local_destination: ~/Dropbox/Development/GitHub/dotfiles
-dotfiles_files:
-  - .bash_profile
-  - .gitconfig
-  - .gitignore
-  - .inputrc
-  - .osx
-  - .vimrc
+configure_sudoers: yes
 
 homebrew_installed_packages:
   - ansible
@@ -43,5 +38,6 @@ homebrew_cask_apps:
   - nvalt
   # - vagrant
   # - vagrant-manager
+  - utorrent
   - vlc
   - virtualbox
