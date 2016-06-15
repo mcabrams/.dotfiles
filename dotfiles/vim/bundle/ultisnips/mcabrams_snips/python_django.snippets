@@ -1,0 +1,15 @@
+extends python
+
+snippet log "logging.logger" m
+# import the logging library
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+logger.info(${1:# stuff to log...})
+endsnippet
+
+snippet pdb "setup pdb" m
+# TODO: Remove!
+import pdb; pdb.set_trace()
+endsnippet

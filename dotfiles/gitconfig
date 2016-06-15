@@ -25,6 +25,8 @@
   diff-against-stash = stash show -p
   undo-last-commit = reset --soft HEAD^
 	last-commit = rev-parse HEAD
+  newest-remote-branches = for-each-ref --sort=-committerdate refs/remotes/ --count=10
+  newest-branches = for-each-ref --sort=-committerdate refs/heads/ --count=10
 	gs = git
 [advice]
 	statusHints = false

@@ -4,3 +4,13 @@ snippet requ "Require statement"
 ${1:moduleName} = require('$1')
 endsnippet
 
+snippet modu "CommonJS Module Setup"
+'use strict';
+
+var ${1:moduleName} = function() {
+};
+
+module.exports = {
+	$1: $1
+};
+endsnippet

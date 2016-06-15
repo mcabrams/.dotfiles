@@ -1,4 +1,4 @@
-let NERDTreeIgnore=['doc', '\.pyc', '\.rbc$', '\~$', '\.DS_Store$', 'tmp']
+let NERDTreeIgnore=['doc$', '\.pyc', '\.rbc$', '\~$', '\.DS_Store$', 'tmp']
 let NERDTreeChDirMode=2
 let NERDTreeMouseMode=3
 let NERDTreeQuitOnOpen=0

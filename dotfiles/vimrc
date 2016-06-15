@@ -24,12 +24,15 @@ Plugin 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 " -------------------------------
 
 Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'henrik/vim-indexed-search'
 Plugin 'yssl/QFEnter'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
+Plugin 'taglist.vim'
+" Plugin 'xolox/vim-misc'
+
+" Plugin 'xolox/vim-easytags'
+" Dependencies: 'xolox/vim-misc'
 
 " -------------------------------
 "  Git
@@ -39,17 +42,27 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
 " -------------------------------
-"  Language Specific
+"  Language / Filetype Specific
 " -------------------------------
 
+" Ruby / Rails
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'ecomba/vim-ruby-refactoring'
+
 Plugin 'tpope/vim-endwise'
 Plugin 'lepture/vim-velocity'
+
+" Javascript
 Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+Plugin 'aaronj1335/underscore-templates.vim'
+" Plugin 'mxw/vim-jsx'
+
+" CSV
 Plugin 'chrisbra/csv.vim'
+
+" Python
+Plugin 'fisadev/vim-isort'
 
 " -------------------------------
 "  Moving Around
@@ -60,8 +73,8 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kana/vim-textobj-user'
 
-" Dependencies: 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
+" Dependencies: 'kana/vim-textobj-user'
 
 " -------------------------------
 "  Project wide search and replace
@@ -89,6 +102,7 @@ Plugin 'tpope/vim-haml'
 " -------------------------------
 
 Plugin 'sjl/vitality.vim'
+Plugin 'jgdavey/tslime.vim'
 
 " -------------------------------
 "  Text Editing and Surrounding
@@ -123,13 +137,20 @@ Plugin 'lilydjwg/colorizer'
 "  UI
 " -------------------------------
 
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " -------------------------------
 "  Utility
 " -------------------------------
 
 Plugin 'tpope/vim-repeat'
+
+" -------------------------------
+"  Other
+" -------------------------------
+
+Plugin 'rizzatti/dash.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -160,6 +181,7 @@ set smartcase        " override 'ignorecase' when pattern has upper case
 " ==============================================================================
 
 set number
+set relativenumber
 set scrolloff=8         " start scrolling when we're 8 lines away from margins
 set sidescrolloff=15    " minimal number of columns to keep left and right of the cursor
 set sidescroll=1        " minimal number of columns to scroll horizontally
@@ -169,8 +191,9 @@ set linespace=2         " number of pixel lines to use between characters
 " Syntax, Highlighting and Spelling
 " ==============================================================================
 
-syntax on       " enable syntax and highlighting, must be before colorscheme
-set cursorline  " highlight the screen line of the cursor
+syntax on           " enable syntax and highlighting, must be before colorscheme
+set cursorline      " highlight the screen line of the cursor
+set colorcolumn=80  " highlight column at 80 characters
 
 " ==============================================================================
 " Multiple Windows
@@ -227,7 +250,7 @@ set softtabstop=2  " if non-zero, number of spaces to insert for a <Tab>
 set shiftwidth=2   " number of spaces used for each step of (auto)indent
 set expandtab      " expand <Tab> to spaces in Insert mode
 set autoindent     " automatically set the indent of a new line
-set smartindent    " do clever autoindenting
+set cindent        " do clever autoindenting
 
 " ==============================================================================
 " Folding
@@ -255,6 +278,9 @@ set smartindent    " do clever autoindenting
 
 set wildmenu
 set wildignore+=*/tmp/*,*.so,*.swp,*.swo,*.zip
+
+" Python/django specific
+set wildignore+=*staticfiles/*,*/htmlcov/*
 
 " ==============================================================================
 " Executing External Commands
@@ -342,6 +368,22 @@ function! HtmlEscape()
   silent s/>/\&gt;/eg
 endfunction
 
+function! TabCloseRight(bang)
+    let cur=tabpagenr()
+    while cur < tabpagenr('$')
+        exe 'tabclose' . a:bang . ' ' . (cur + 1)
+    endwhile
+endfunction
+
+function! TabCloseLeft(bang)
+    while tabpagenr() > 1
+        exe 'tabclose' . a:bang . ' 1'
+    endwhile
+endfunction
+
+command! -bang Tabcloseright call TabCloseRight('<bang>')
+command! -bang Tabcloseleft call TabCloseLeft('<bang>')
+
 " Go back to last active tab
 let g:lasttab = 1
 nmap <Leader>lt :exe "tabn ".g:lasttab<CR>
@@ -353,12 +395,86 @@ function! GgrepInNewTab(name)
   exe "Ggrep" a:name
 endfunction
 
-vnoremap <Leader>gg "jy:Ggrep <C-R>j<CR>
-nmap <Leader>gg "jyw:Ggrep <C-R>j<CR>
-vnoremap <Leader>ggt "jy:GgrepInNewTab <C-R>j<CR>
-nmap <Leader>ggt "jyw:GgrepInNewTab <C-R>j<CR>
+" Ggrep in new vs
+function! GgrepInNewV(name)
+  vs %
+  exe "Ggrep" a:name
+endfunction
+
+" Ggrep in new sp
+function! GgrepInNewS(name)
+  sp %
+  exe "Ggrep" a:name
+endfunction
+
+" Django wrap with trans mappings
+vnoremap <leader>wt S"vf"S%witrans 
+vnoremap <leader>wbt S%f%a blocktrans%€kb %}>>/blocktransf}lxf%i€kb{lxi% endblocktrans >>
+
+" Open taglist
+nmap <Leader>tl :TlistToggle<CR>
+
+" Better fold text function
+fu! CustomFoldText()
+    "get first non-blank line
+    let fs = v:foldstart
+    while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
+    endwhile
+    if fs > v:foldend
+        let line = getline(v:foldstart)
+    else
+        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+    endif
+
+    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+    let foldSize = 1 + v:foldend - v:foldstart
+    let foldSizeStr = " " . foldSize . " lines "
+    let foldLevelStr = repeat("+--", v:foldlevel)
+    let lineCount = line("$")
+    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+    return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+endf
+
+" Use better fold text
+set foldtext=CustomFoldText()
+
+" Swap buffers between windows (http://stackoverflow.com/questions/2586984/how-can-i-swap-positions-of-two-open-files-in-splits-in-vim)
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf
+endfunction
+
+" Map swap commands
+nmap <silent> <leader>mw :call MarkWindowSwap()<CR>
+nmap <silent> <leader>pw :call DoWindowSwap()<CR>
+
+vnoremap <Leader>gg "jy:Ggrep "<C-R>j"<CR>
+nmap <Leader>gg "jyw:Ggrep "<C-R>j"<CR>
+vnoremap <Leader>ggt "jy:GgrepInNewTab "<C-R>j"<CR>
+nmap <Leader>ggt "jyw:GgrepInNewTab "<C-R>j"<CR>
+vnoremap <Leader>ggv "jy:GgrepInNewV "<C-R>j"<CR>
+nmap <Leader>ggv "jyw:GgrepInNewV "<C-R>j"<CR>
+vnoremap <Leader>ggs "jy:GgrepInNewS "<C-R>j"<CR>
+nmap <Leader>ggs "jyw:GgrepInNewS "<C-R>j"<CR>
 
 command! -nargs=1 GgrepInNewTab call GgrepInNewTab(<f-args>)
+command! -nargs=1 GgrepInNewS call GgrepInNewS(<f-args>)
+command! -nargs=1 GgrepInNewV call GgrepInNewV(<f-args>)
 
 " ==============================================================================
 " Colors
@@ -393,11 +509,11 @@ augroup vim_enter
 
   " Get startify and nerdtree working on startup
   autocmd VimEnter *
-        \ if !argc() |
-        \   Startify |
-        \   NERDTree |
-        \   execute "normal \<c-w>w" |
-        \ endif
+        \   if !argc()
+        \ |   Startify
+        \ |   NERDTree
+        \ |   wincmd w
+        \ | endif
 augroup END
 
 augroup filetype_startify
@@ -427,13 +543,5 @@ augroup END
 
 au BufRead,BufNewFile *.json set filetype=json
 
-let g:syntastic_javascript_checkers = ['eslint', 'jshint']
-let g:syntastic_json_checkers = ['jsonlint']
-let g:syntastic_javascript_eslint_exec = 'eslint'
-" let g:syntastic_javascript_checkers = ['jsxhint']
-" let g:syntastic_javascript_jsxhint_exec = 'jsx-jshint-wrapper'
-
-" Let Vim walk up directory hierarchy from CWD to root looking for tags file
-set tags=tags;/
-" Tell EasyTags to use the tags file found by Vim
-let g:easytags_dynamic_files = 1
+" For setting up fzf
+set rtp+=~/.fzf

@@ -3,20 +3,16 @@ source "$HOME/.bash_scripts/bash_prompt"
 source "$HOME/.bash_scripts/explain"
 source "$HOME/.bash_scripts/zscript"
 
-# set-vim-mode
-set -o vi
-
 alias mysql-autocomplete="mysql --auto-rehash -u root"
 
 alias rd="rm -rf"
 alias src="source ~/.bashrc"
-alias grep="grep -irn -C2 --color"
-alias rvmgem="rvm gemset list"
+alias pgrep="grep -irn -C2 --color"
+# alias rvmgem="rvm gemset list"
 alias tree="tree -CF"
 alias vim='mvim -v'
 alias vim="${vim}"
 alias tmux="tmux -2" # support 256 colors
-alias newvim="mvim -u ~/.vimrcnew"
 
 # Github aliases for shorter commands
 
@@ -45,7 +41,12 @@ export VISUAL=mvim
 eval `ssh-agent -s`
 ssh-add
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# set-vim-mode, important to keep before fzf
+set -o vi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
