@@ -63,6 +63,7 @@ Plugin 'chrisbra/csv.vim'
 
 " Python
 Plugin 'fisadev/vim-isort'
+Plugin 'heavenshell/vim-pydocstring'
 
 " -------------------------------
 "  Moving Around
@@ -151,6 +152,17 @@ Plugin 'tpope/vim-repeat'
 " -------------------------------
 
 Plugin 'rizzatti/dash.vim'
+Plugin 'janko-m/vim-test'
+
+" -------------------------------
+"  Local and runtimepath modification
+" -------------------------------
+
+" For setting up fzf
+set rtp+=~/.fzf
+"
+" For setting up potion
+set rtp+=~/.vim/bundle/potion/
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -161,6 +173,10 @@ filetype plugin indent on
 " -------------------------------
 "  END OF VUNDLE BUNDLES
 " -------------------------------
+
+" ==============================================================================
+" Important
+" ==============================================================================
 
 " ==============================================================================
 " Moving Around, Searching and Patterns
@@ -280,7 +296,7 @@ set wildmenu
 set wildignore+=*/tmp/*,*.so,*.swp,*.swo,*.zip
 
 " Python/django specific
-set wildignore+=*staticfiles/*,*/htmlcov/*
+set wildignore+=*staticfiles/*,*/htmlcov/*,*/node_modules/*
 
 " ==============================================================================
 " Executing External Commands
@@ -476,6 +492,13 @@ command! -nargs=1 GgrepInNewTab call GgrepInNewTab(<f-args>)
 command! -nargs=1 GgrepInNewS call GgrepInNewS(<f-args>)
 command! -nargs=1 GgrepInNewV call GgrepInNewV(<f-args>)
 
+" Map test commands
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+
 " ==============================================================================
 " Colors
 " ==============================================================================
@@ -542,6 +565,3 @@ augroup git_commit
 augroup END
 
 au BufRead,BufNewFile *.json set filetype=json
-
-" For setting up fzf
-set rtp+=~/.fzf
