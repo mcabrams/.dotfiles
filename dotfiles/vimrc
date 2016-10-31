@@ -506,7 +506,7 @@ nmap <silent> <leader>g :TestVisit<CR>
 set t_Co=256             " set for 256 color colorschemes
 set background=dark
 colorscheme base16-ocean
-set guifont=Source\ Code\ Pro:h11
+" set guifont=Source\ Code\ Pro:h11
 
 if !has("gui_running")
   set term=screen-256color

@@ -5,10 +5,8 @@ source "$HOME/.bash_scripts/zscript"
 
 alias mysql-autocomplete="mysql --auto-rehash -u root"
 
-alias rd="rm -rf"
 alias src="source ~/.bashrc"
 alias pgrep="grep -irn -C2 --color"
-# alias rvmgem="rvm gemset list"
 alias tree="tree -CF"
 alias vim='mvim -v'
 alias vim="${vim}"
@@ -40,8 +38,6 @@ export VISUAL=mvim
 
 eval `ssh-agent -s`
 ssh-add
-
-# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
