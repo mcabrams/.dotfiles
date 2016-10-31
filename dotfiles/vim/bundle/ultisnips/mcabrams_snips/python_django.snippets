@@ -13,3 +13,15 @@ snippet pdb "setup pdb" m
 # TODO: Remove!
 import pdb; pdb.set_trace()
 endsnippet
+
+snippet bpdb "setup bpdb" m
+# TODO: Remove!
+import bpdb; bpdb.set_trace()
+endsnippet
+
+snippet timeit "setup bpdb" m
+# TODO: Remove!
+import timeit; start_time = timeit.default_timer()
+${1:# stuff to time...}
+elapsed = timeit.default_timer() - start_time
+endsnippet
