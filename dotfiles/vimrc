@@ -63,7 +63,7 @@ Plugin 'chrisbra/csv.vim'
 
 " Python
 Plugin 'fisadev/vim-isort'
-Plugin 'heavenshell/vim-pydocstring'
+" Plugin 'heavenshell/vim-pydocstring'
 
 " -------------------------------
 "  Moving Around
@@ -197,7 +197,7 @@ set smartcase        " override 'ignorecase' when pattern has upper case
 " ==============================================================================
 
 set number
-set relativenumber
+" set relativenumber
 set scrolloff=8         " start scrolling when we're 8 lines away from margins
 set sidescrolloff=15    " minimal number of columns to keep left and right of the cursor
 set sidescroll=1        " minimal number of columns to scroll horizontally
@@ -234,6 +234,7 @@ set tabpagemax=20     " prevent vim from opening more than 20 tabs
 " GUI
 " ==============================================================================
 
+set guioptions-=e "remove tab pages
 set guioptions-=r "remove right-hand-scrollbar
 set guioptions-=L "remove left-hand-scrollbar
 set guioptions-=T "remove toolbar
@@ -407,19 +408,25 @@ au TabLeave * let g:lasttab = tabpagenr()
 
 " Ggrep in new tab
 function! GgrepInNewTab(name)
+  let linenum=getpos('.')[1]
   tabe %
+  call cursor(linenum,0)
   exe "Ggrep" a:name
 endfunction
 
 " Ggrep in new vs
 function! GgrepInNewV(name)
+  let linenum=getpos('.')[1]
   vs %
+  call cursor(linenum,0)
   exe "Ggrep" a:name
 endfunction
 
 " Ggrep in new sp
 function! GgrepInNewS(name)
+  let linenum=getpos('.')[1]
   sp %
+  call cursor(linenum,0)
   exe "Ggrep" a:name
 endfunction
 

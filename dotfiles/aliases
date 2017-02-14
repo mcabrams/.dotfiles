@@ -4,4 +4,3 @@ alias show-hidden="defaults write com.apple.finder AppleShowAllFiles TRUE;killal
 alias hide-hidden="defaults write com.apple.finder AppleShowAllFiles FALSE;killall Finder"
 alias google-chrome="/usr/bin/open -a \"/Applications/Google Chrome.app\""
 alias ggrep="git grep -in -C2 --color"
-alias docker-remove="docker rm -vf $(docker ps -a -q)"
