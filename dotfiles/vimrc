@@ -39,6 +39,7 @@ Plugin 'taglist.vim'
 " -------------------------------
 
 Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/gv.vim'
 Plugin 'airblade/vim-gitgutter'
 
 " -------------------------------
@@ -197,7 +198,6 @@ set smartcase        " override 'ignorecase' when pattern has upper case
 " ==============================================================================
 
 set number
-set relativenumber
 set scrolloff=8         " start scrolling when we're 8 lines away from margins
 set sidescrolloff=15    " minimal number of columns to keep left and right of the cursor
 set sidescroll=1        " minimal number of columns to scroll horizontally
@@ -296,7 +296,7 @@ set wildmenu
 set wildignore+=*/tmp/*,*.so,*.swp,*.swo,*.zip
 
 " Python/django specific
-set wildignore+=*staticfiles/*,*/htmlcov/*,*/node_modules/*
+set wildignore+=*staticfiles/*,*/htmlcov/*,*/node_modules/*,*/__pycache__/**
 
 " ==============================================================================
 " Executing External Commands

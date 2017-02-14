@@ -36,9 +36,6 @@ alias gcl='git clone'
 export EDITOR=mvim
 export VISUAL=mvim
 
-eval `ssh-agent -s`
-ssh-add
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
