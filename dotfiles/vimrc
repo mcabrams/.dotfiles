@@ -41,6 +41,7 @@ Plugin 'taglist.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/gv.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-rhubarb'
 
 " -------------------------------
 "  Language / Filetype Specific
@@ -64,6 +65,7 @@ Plugin 'chrisbra/csv.vim'
 
 " Python
 Plugin 'fisadev/vim-isort'
+Plugin 'Vimjas/vim-python-pep8-indent'
 " Plugin 'heavenshell/vim-pydocstring'
 
 " -------------------------------
