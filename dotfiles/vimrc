@@ -41,6 +41,7 @@ Plugin 'henrik/vim-indexed-search'
 Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/gv.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-rhubarb'
 
 " -------------------------------
 "  Language / Filetype Specific
@@ -58,7 +59,7 @@ Plugin 'lepture/vim-velocity'
 " Javascript
 Plugin 'pangloss/vim-javascript'
 " Plugin 'aaronj1335/underscore-templates.vim'
-" Plugin 'mxw/vim-jsx'
+Plugin 'mxw/vim-jsx'
 
 " CSV
 Plugin 'chrisbra/csv.vim'
@@ -97,6 +98,7 @@ Plugin 'csexton/trailertrash.vim'
 " -------------------------------
 
 Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'hail2u/vim-css3-syntax'
 Plugin 'tpope/vim-haml'
 
 " -------------------------------
