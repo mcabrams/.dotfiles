@@ -5,3 +5,4 @@
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_max_files = 40000
 let g:ctrlp_reuse_window  = 1
+let g:ctrlp_show_hidden = 1

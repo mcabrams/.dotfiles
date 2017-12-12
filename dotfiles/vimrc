@@ -27,7 +27,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mhinz/vim-startify'
 Plugin 'henrik/vim-indexed-search'
-" Plugin 'yssl/QFEnter'
+Plugin 'yssl/QFEnter'
 " Plugin 'taglist.vim'
 " Plugin 'xolox/vim-misc'
 
@@ -55,6 +55,7 @@ Plugin 'tpope/vim-rhubarb'
 
 Plugin 'tpope/vim-endwise'
 Plugin 'lepture/vim-velocity'
+Plugin 'reedes/vim-pencil'
 
 " Javascript
 Plugin 'pangloss/vim-javascript'
@@ -69,11 +70,16 @@ Plugin 'fisadev/vim-isort'
 Plugin 'Vimjas/vim-python-pep8-indent'
 " Plugin 'heavenshell/vim-pydocstring'
 
+" Clojure
+Plugin 'vim-scripts/paredit.vim'
+Plugin 'tpope/vim-fireplace'
+Plugin 'kien/rainbow_parentheses.vim'
+
 " -------------------------------
 "  Moving Around
 " -------------------------------
 
-Plugin 'benjifisher/matchit.zip'
+" Plugin 'benjifisher/matchit.zip'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'kana/vim-textobj-user'
@@ -91,7 +97,7 @@ Plugin 'henrik/vim-qargs'
 "  Syntax Checking
 " -------------------------------
 
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'csexton/trailertrash.vim'
 
 " -------------------------------
@@ -101,6 +107,7 @@ Plugin 'csexton/trailertrash.vim'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'tpope/vim-haml'
+Plugin 'leafgarland/typescript-vim'
 
 " -------------------------------
 "  Terminal Aids
@@ -508,6 +515,9 @@ nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
+
+" Delete surrounding function
+nmap <silent> dsf ds)db
 
 " ==============================================================================
 " Colors

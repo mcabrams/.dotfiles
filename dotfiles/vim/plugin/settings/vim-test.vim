@@ -1,5 +1,5 @@
 function! VagrantTransform(cmd) abort
-  return 'docker-compose run web '.a:cmd.' | less -d'
+  return 'docker-compose exec web '.a:cmd.' | less -d'
 endfunction
 
 let g:test#custom_transformations = {'vagrant': function('VagrantTransform')}

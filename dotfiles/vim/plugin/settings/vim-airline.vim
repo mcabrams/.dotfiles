@@ -8,6 +8,7 @@ let g:airline_theme='base16'
 let g:airline_extensions = ['branch', 'ctrlp', 'tabline']
 
 let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#ale#enabled = 1
 
 if !has("gui_running")
   let g:airline#extensions#tabline#enabled = 1
