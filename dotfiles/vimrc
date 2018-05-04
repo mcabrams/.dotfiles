@@ -108,6 +108,10 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'tpope/vim-haml'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
+Plugin 'ianks/vim-tsx'
+" Plugin 'styled-components/vim-styled-components'
+Plugin 'git@github.com:styled-components/vim-styled-components'
 
 " -------------------------------
 "  Terminal Aids
@@ -540,6 +544,7 @@ endif
 
 set directory=~/.vim/swap,.
 set backupdir=~/.vim/swap,.
+set backupcopy=yes
 
 " ==============================================================================
 " Autocommands
@@ -582,6 +587,10 @@ augroup END
 augroup git_commit
   autocmd!
   autocmd Filetype gitcommit setlocal spell textwidth=72
+augroup END
+
+augroup filetypedetect
+    au BufRead,BufNewFile *.d.ts set filetype=typescript
 augroup END
 
 au BufRead,BufNewFile *.json set filetype=json
