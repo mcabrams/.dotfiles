@@ -1,4 +1,5 @@
+buddy ~/git/personal/buddy-web-app
 git ~/git
-Notes ~/Dropbox/Notes
-soylent ~/soylent/soylent_django
+notes ~/Dropbox/Notes
+swap ~/.vim/swap
 

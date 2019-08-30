@@ -30,6 +30,7 @@ Plugin 'henrik/vim-indexed-search'
 Plugin 'yssl/QFEnter'
 " Plugin 'taglist.vim'
 " Plugin 'xolox/vim-misc'
+Plugin 'junegunn/fzf.vim'
 
 " Plugin 'xolox/vim-easytags'
 " Dependencies: 'xolox/vim-misc'
@@ -60,7 +61,9 @@ Plugin 'reedes/vim-pencil'
 " Javascript
 Plugin 'pangloss/vim-javascript'
 " Plugin 'aaronj1335/underscore-templates.vim'
-Plugin 'mxw/vim-jsx'
+" Plugin 'leafgarland/typescript-vim'
+" Plugin 'mxw/vim-jsx'
+" Plugin 'maxmellon/vim-jsx-pretty'
 
 " CSV
 Plugin 'chrisbra/csv.vim'
@@ -104,14 +107,16 @@ Plugin 'csexton/trailertrash.vim'
 "  Syntaxes
 " -------------------------------
 
+Plugin 'jparise/vim-graphql'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'tpope/vim-haml'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'Quramy/tsuquyomi'
-Plugin 'ianks/vim-tsx'
-" Plugin 'styled-components/vim-styled-components'
-Plugin 'git@github.com:styled-components/vim-styled-components'
+Plugin 'file:///Users/MattAbrams/git/other/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'styled-components/vim-styled-components'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'stephpy/vim-yaml'
 
 " -------------------------------
 "  Terminal Aids
@@ -137,6 +142,8 @@ Plugin 'jgdavey/vim-blockle'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'mattn/emmet-vim'
+
+Plugin 'mlaursen/vim-react-snippets'
 
 " -------------------------------
 "  Themes and Colors
@@ -168,13 +175,14 @@ Plugin 'tpope/vim-repeat'
 
 " Plugin 'rizzatti/dash.vim'
 Plugin 'janko-m/vim-test'
+Plugin 'itspriddle/vim-marked'
 
 " -------------------------------
 "  Local and runtimepath modification
 " -------------------------------
 
 " For setting up fzf
-set rtp+=~/.fzf
+set rtp+=/usr/local/opt/fzf
 "
 " For setting up potion project
 " set rtp+=~/.vim/bundle/potion/
@@ -312,6 +320,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.swo,*.zip
 
 " Python/django specific
 set wildignore+=*staticfiles/*,*/htmlcov/*,*/node_modules/*,*/__pycache__/**
+set wildignore+=*.pyc,*/.mypy_cache/*
 
 " ==============================================================================
 " Executing External Commands

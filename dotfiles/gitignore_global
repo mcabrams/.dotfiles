@@ -50,3 +50,7 @@ Thumbs.db
 *.swp
 *.swo
 *.tern-port
+
+# WebStorm generated files #
+#######################
+.idea/

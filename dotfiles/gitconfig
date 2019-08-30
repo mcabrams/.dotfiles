@@ -28,6 +28,8 @@
   newest-remote-branches = for-each-ref --sort=-committerdate refs/remotes/ --count=10
   newest-branches = for-each-ref --sort=-committerdate refs/heads/ --count=10
 	gs = git
+  find-merge = "!sh -c 'commit=$0 && branch=${1:-HEAD} && (git rev-list $commit..$branch --ancestry-path | cat -n; git rev-list $commit..$branch --first-parent | cat -n) | sort -k2 -s | uniq -f1 -d | sort -n | tail -1 | cut -f2'"
+  show-merge = "!sh -c 'merge=$(git find-merge $0 $1) && [ -n \"$merge\" ] && git show $merge'"
 [advice]
 	statusHints = false
 [difftool "sourcetree"]
@@ -41,3 +43,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[http]
+	postBuffer = 1048576000

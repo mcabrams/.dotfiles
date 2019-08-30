@@ -1,0 +1,65 @@
+snippet react "React" m
+import React from 'react';
+endsnippet
+
+snippet fc "React.FC" m
+import React from 'react';
+
+interface `!p snip.rv = t[1]`Props {
+	${2}
+}
+
+export const ${1:Component}: React.FC<`!p snip.rv = t[1]`Props> = props => (
+	${3}
+);
+endsnippet
+
+snippet jest "jest" m
+describe('${1:Something}', () => {
+	it('${2:Should do something}', () => {
+		${3:Your test}
+	});
+});
+endsnippet
+
+snippet container "Container" m
+import { connect } from 'react-redux';
+
+import { ${1:Component} } from '@src/components/${2:component-path}';
+import { RootState } from '@src/redux';
+import { Dispatch } from '@src/redux/types';
+import { bindActionCreators } from 'redux';
+
+interface OwnProps {}
+
+interface StateProps {}
+
+interface DispatchProps {}
+
+interface MergeProps {}
+
+const mapStateToProps = (state: RootState): StateProps => ({
+});
+
+const mapDispatchToProps = (
+  dispatch: Dispatch,
+  {}: OwnProps,
+): DispatchProps => {
+  const actions = {
+  };
+  return bindActionCreators(actions, dispatch);
+};
+
+const mergeProps = (
+  state: StateProps,
+  actions: DispatchProps,
+): MergeProps => ({
+  ...state,
+  ...actions,
+});
+
+export const `!p snip.rv = t[1]`Container = connect<
+  StateProps, DispatchProps, OwnProps, MergeProps, RootState>(
+  mapStateToProps, mapDispatchToProps, mergeProps,
+)(`!p snip.rv = t[1]`);
+endsnippet
