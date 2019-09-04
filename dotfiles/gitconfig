@@ -20,6 +20,7 @@
 [alias]
 	co = checkout
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  log-bullet = log --pretty=format:'%Cgreen- %s %n%w(80,2,2)%-b'
   url =! bash -c 'git config --get remote.origin.url | sed -E "s/.+:\\(.+\\)\\.git$/https:\\\\/\\\\/github\\\\.com\\\\/\\\\1/g"'
   unstage-file = reset HEAD
   diff-against-stash = stash show -p
