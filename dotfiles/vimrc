@@ -603,3 +603,8 @@ augroup filetypedetect
 augroup END
 
 au BufRead,BufNewFile *.json set filetype=json
+
+" These save a macro to indent and wrap an output from google doc column
+" First wraps each line w/ quotes, second does not
+let @h = '/]kg$S"g$nkg$hA,=i['
+let @j = '/]keA,=i['
