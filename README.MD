@@ -13,6 +13,4 @@ File/directory specific notes
 --------
 `mcabrams_snips/` should be symlinked in `~/.vim/bundle/ultisnips/mcabrams_snips`
 
-`dict` contains a submodule vim-node. The `dict` directory should be symlinked in `!/.vim/dict/`
-
 `vim/plugin/settings` should be symlinked to `~/.vim/plugin/settings`, meaning that you will possibly need to create that plugin directory

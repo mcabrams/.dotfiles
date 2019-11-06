@@ -1,9 +1,0 @@
-[submodule "vim-node"]
-	path = vim-node
-	url = https://github.com/guileen/vim-node
-[submodule "dict"]
-	path = dict
-	url = https://github.com/guileen/vim-node
-[submodule "dict/node"]
-	path = dict/node
-	url = https://github.com/guileen/vim-node

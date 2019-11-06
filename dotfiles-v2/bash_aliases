@@ -1,0 +1,25 @@
+alias ll="ls -AhlG"
+alias lls="ls -AhltcG"
+alias show-hidden="defaults write com.apple.finder AppleShowAllFiles TRUE;killall Finder"
+alias hide-hidden="defaults write com.apple.finder AppleShowAllFiles FALSE;killall Finder"
+alias google-chrome="/usr/bin/open -a \"/Applications/Google Chrome.app\""
+alias ggrep="git grep -in -C2 --color"
+
+# Github aliases for shorter commands
+
+alias ga='git add'
+alias gp='git push'
+alias gl='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit'
+alias glfl='git log --abbrev-commit --date=relative --graph -p'
+alias glfm='git log --abbrev-commit --date=relative --graph --name-only -p'
+alias glfs='git log --abbrev-commit --date=relative --graph'
+alias gs='git status'
+alias gd='git diff'
+alias gm='git commit -m'
+alias gam='git commit -am'
+alias gb='git branch'
+alias gc='git checkout'
+alias gra='git remote add'
+alias grr='git remote rm'
+alias gpu='git pull'
+alias gcl='git clone'
