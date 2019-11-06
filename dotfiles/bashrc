@@ -3,8 +3,7 @@ source "$HOME/.bash_scripts/bash_prompt"
 source "$HOME/.bash_scripts/explain"
 source "$HOME/.bash_scripts/zscript"
 
-alias mysql-autocomplete="mysql --auto-rehash -u root"
-
+alias yaml2js="python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)'"
 alias src="source ~/.bashrc"
 alias pgrep="grep -irn -C2 --color"
 alias tree="tree -CF"
@@ -47,3 +46,5 @@ set -o vi
 HEROKU_AC_BASH_SETUP_PATH=/Users/MattAbrams/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;
 # https://github.com/tmux-plugins/tmux-resurrect/blob/master/docs/restoring_shell_history.md
 HISTCONTROL=ignoreboth
+
+export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"

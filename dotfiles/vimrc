@@ -48,22 +48,15 @@ Plugin 'tpope/vim-rhubarb'
 "  Language / Filetype Specific
 " -------------------------------
 
-" Ruby / Rails
-" Plugin 'vim-ruby/vim-ruby'
-" Plugin 'tpope/vim-rails'
-" Plugin 'ecomba/vim-ruby-refactoring'
-" Plugin 'nelstrom/vim-textobj-rubyblock'
-
 Plugin 'tpope/vim-endwise'
 Plugin 'lepture/vim-velocity'
 Plugin 'reedes/vim-pencil'
 
 " Javascript
 Plugin 'pangloss/vim-javascript'
-" Plugin 'aaronj1335/underscore-templates.vim'
-" Plugin 'leafgarland/typescript-vim'
-" Plugin 'mxw/vim-jsx'
-" Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'HerringtonDarkholme/yats.vim'
+" or Plugin 'leafgarland/typescript-vim'
+Plugin 'maxmellon/vim-jsx-pretty'
 
 " CSV
 Plugin 'chrisbra/csv.vim'
@@ -100,7 +93,7 @@ Plugin 'henrik/vim-qargs'
 "  Syntax Checking
 " -------------------------------
 
-Plugin 'w0rp/ale'
+Plugin 'dense-analysis/ale'
 Plugin 'csexton/trailertrash.vim'
 
 " -------------------------------
@@ -111,9 +104,9 @@ Plugin 'jparise/vim-graphql'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'tpope/vim-haml'
-Plugin 'Quramy/tsuquyomi'
-Plugin 'file:///Users/MattAbrams/git/other/typescript-vim'
-Plugin 'peitalin/vim-jsx-typescript'
+" Plugin 'Quramy/tsuquyomi'
+" Plugin 'file:///Users/MattAbrams/git/other/typescript-vim'
+" Plugin 'peitalin/vim-jsx-typescript'
 Plugin 'styled-components/vim-styled-components'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'stephpy/vim-yaml'
@@ -608,3 +601,5 @@ au BufRead,BufNewFile *.json set filetype=json
 " First wraps each line w/ quotes, second does not
 let @h = '/]kg$S"g$nkg$hA,=i['
 let @j = '/]keA,=i['
+
+set omnifunc=ale#completion#OmniFunc
