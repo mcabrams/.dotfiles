@@ -1,0 +1,60 @@
+/* Decrease the tabs bar height in gnome-terminal
+ * See:
+ * https://stackoverflow.com/questions/36869701/decrease-the-tabs-bar-height-in-gnome-terminal
+ */
+
+terminal-window notebook > header.top button {
+  padding: 0 0 0 0;
+  background-image: none;
+  border: 0;
+  margin-right: 10px;
+}
+terminal-window notebook > header.top > tabs > tab {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+terminal-window notebook > header.top > tabs > tab label {
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+/* shrink headerbars */
+/* see: https://ogbe.net/blog/gnome_titles.html */
+headerbar {
+    min-height: 0px;
+    padding-left: 2px; /* same as childrens vertical margins for nicer proportions */
+    padding-right: 2px;
+    background-color: #2d2d2d;
+}
+
+headerbar entry,
+headerbar spinbutton,
+headerbar button,
+headerbar separator {
+    margin-top: 0px; /* same as headerbar side padding for nicer proportions */
+    margin-bottom: 0px;
+}
+
+/* shrink ssd titlebars */
+.default-decoration {
+    min-height: 0; /* let the entry and button drive the titlebar size */
+    padding: 0px;
+    background-color: #2d2d2d;
+}
+
+.default-decoration .titlebutton {
+    min-height: 0px; /* tweak these two props to reduce button size */
+    min-width: 0px;
+}
+
+window.ssd headerbar.titlebar {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    min-height: 0;
+}
+
+window.ssd headerbar.titlebar button.titlebutton {
+    padding-top: 3px;
+    padding-bottom:3px;
+    min-height: 0;
+}
